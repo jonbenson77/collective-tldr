@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Daily Brief - Jon - Monday, Apr 27</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="https://use.typekit.net/jwl7pvv.css">
+<link rel="preconnect" href="https://use.typekit.net" crossorigin>
+<style>
+  :root {
+    --brand-blue: #5a6cff;
+    --brand-blue-lift: #7a88ff;
+    --brand-blue-soft: rgba(90, 108, 255, 0.14);
+    --brand-blue-line: rgba(90, 108, 255, 0.28);
+    --accent-peach: #f7b589;
+    --accent-peach-soft: rgba(247, 181, 137, 0.14);
+    --green: #6fcf97;
+    --green-soft: rgba(111, 207, 151, 0.14);
+    --yellow: #f2c94c;
+    --yellow-soft: rgba(242, 201, 76, 0.14);
+    --skip: #6d7788;
+    --skip-soft: rgba(109, 120, 136, 0.12);
+
+    --bg: #070a10;
+    --bg-gradient: radial-gradient(ellipse at 30% 0%, #182138 0%, #0a0d14 55%, #070a10 100%);
+    --surface: #10141e;
+    --surface-2: #161c28;
+    --surface-3: #1f2734;
+    --surface-hi: #262f3e;
+
+    --ink: #f4f7fc;
+    --ink-2: #d4dbe8;
+    --ink-3: #9ca5b7;
+    --ink-faint: #6d7688;
+    --line: rgba(255, 255, 255, 0.08);
+    --line-soft: rgba(255, 255, 255, 0.04);
+    --line-strong: rgba(255, 255, 255, 0.14);
+
+    --radius-btn: 7px;
+    --radius-card: 14px;
+    --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4), 0 14px 32px rgba(0, 0, 0, 0.28);
+    --font-sans: "helvetica-neue-lt-pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:var(--font-sans);font-weight:400;font-size:18px;line-height:1.7;color:var(--ink-2);background:var(--bg);background-image:var(--bg-gradient);background-attachment:fixed;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4{color:var(--ink);margin:0 0 .5em}
+  h1{font-size:38px;font-weight:800;letter-spacing:-.01em;line-height:1.15}
+  h2{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin:48px 0 18px}
+  h3{font-size:23px;font-weight:700;line-height:1.3}
+  p{margin:0 0 1em}
+  .wrap{max-width:920px;margin:0 auto;padding:48px 28px 96px}
+
+  .kicker{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-peach);background:var(--accent-peach-soft);padding:6px 12px;border-radius:999px;margin-bottom:14px}
+  .meta{color:var(--ink-3);font-size:15px;margin-top:6px}
+
+  .status-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:28px 0 0}
+  .status-card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 18px}
+  .status-card .label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:4px}
+  .status-card .value{color:var(--ink);font-size:22px;font-weight:800;line-height:1.1}
+  .status-card .note{color:var(--ink-3);font-size:13px;margin-top:2px}
+
+  .onething{background:linear-gradient(135deg,var(--brand-blue-soft),transparent 65%);border:1px solid var(--brand-blue-line);border-radius:var(--radius-card);padding:30px 34px;margin:44px 0 32px}
+  .onething-kicker{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--brand-blue-lift);margin-bottom:10px}
+  .onething h3{font-size:26px;color:var(--ink);margin-bottom:10px}
+  .onething p{color:var(--ink-2);font-size:17px;margin-bottom:0}
+
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-card);padding:28px 32px;margin-bottom:20px}
+  .card .why-kicker{color:var(--brand-blue-lift);font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px}
+  .card .why-line{color:var(--ink);font-size:17px;font-weight:600;margin-bottom:8px;line-height:1.45}
+  .card .use-line{color:var(--ink-2);font-size:16px;margin-bottom:18px;font-style:italic;line-height:1.55}
+  .card h3{margin-bottom:6px}
+  .card .creator{font-size:13px;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.08em;font-weight:700;margin-bottom:14px}
+  .card .what{color:var(--ink-2);font-size:16px;line-height:1.65;margin:0 0 14px}
+  .card ul.tldr{margin:8px 0 14px 22px;font-size:15px;color:var(--ink-2);line-height:1.65}
+  .card ul.tldr li{margin-bottom:6px}
+  .card ul.tldr li strong{color:var(--ink)}
+
+  .btn-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+  .btn-row-label{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin:18px 0 8px}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-sans);font-weight:700;font-size:14px;padding:10px 16px;border-radius:var(--radius-btn);cursor:pointer;border:1px solid transparent;text-decoration:none;transition:transform .08s ease,background .15s ease,border-color .15s ease}
+  .btn:hover{transform:translateY(-1px);text-decoration:none}
+  .btn-primary{background:var(--brand-blue);color:#fff}
+  .btn-primary:hover{background:var(--brand-blue-lift)}
+  .btn-install{background:var(--green-soft);color:var(--green);border-color:rgba(111,207,151,0.35)}
+  .btn-install:hover{background:rgba(111,207,151,0.22)}
+  .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line-strong)}
+  .btn-ghost:hover{background:var(--surface-2);border-color:var(--brand-blue-line)}
+  .btn-action{background:transparent;border-color:rgba(247,181,137,0.35);color:var(--accent-peach)}
+  .btn-action:hover{background:var(--accent-peach-soft)}
+
+  .panel{margin-top:14px;border-radius:10px;overflow:hidden;max-height:0;transition:max-height .6s ease}
+  .panel.open{max-height:6000px}
+  .panel-inner{background:var(--surface-2);border:1px solid var(--line);padding:22px 26px;border-radius:10px}
+  .panel-inner h5{font-size:15px;color:var(--ink);margin:14px 0 6px;font-weight:700}
+  .panel-inner h5:first-of-type{margin-top:0}
+  .panel-inner p{font-size:15px;color:var(--ink-2);line-height:1.65}
+  .panel-inner code{font-family:var(--font-mono);background:var(--bg);padding:2px 6px;border-radius:4px;font-size:13px;color:var(--ink)}
+
+  .cmd-block{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--bg);color:var(--ink);padding:12px 14px;border-radius:7px;border:1px solid var(--line-strong);margin:10px 0;font-family:var(--font-mono);font-size:13px}
+  .copy-btn{font-size:11px;padding:5px 11px;background:var(--surface-3);color:var(--ink-2);border:1px solid var(--line);border-radius:5px;cursor:pointer}
+  .copy-btn:hover{background:var(--surface-hi);color:var(--ink)}
+
+  .verify-note{font-size:12px;color:var(--accent-peach);margin-top:6px;font-style:italic}
+
+  .save-card{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--yellow);border-radius:var(--radius-card);padding:22px 28px;margin-bottom:14px;opacity:.95}
+  .save-card .why-kicker{color:var(--yellow);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:4px}
+  .save-card .why-line{color:var(--ink);font-size:16px;font-weight:600;margin-bottom:6px}
+  .save-card h3{font-size:18px;margin-bottom:4px}
+  .save-card .creator{font-size:12px;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.08em;font-weight:700;margin-bottom:10px}
+  .save-card p{font-size:14px;color:var(--ink-2);margin-bottom:10px}
+
+  .footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--line);color:var(--ink-faint);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  .footer code{font-family:var(--font-mono);background:var(--bg);padding:2px 6px;border-radius:4px;color:var(--ink-2)}
+
+  @media (max-width:720px){
+    h1{font-size:30px}
+    .status-strip{grid-template-columns:1fr}
+    .card{padding:22px 20px}
+    .onething{padding:24px 22px}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <span class="kicker">AI Collective . Daily Brief</span>
+  <h1>Good morning, Jon.</h1>
+  <p class="meta">Monday, April 27, 2026 . 8 items synthesized from 12 channels . filtered for your setup</p>
+
+  <div class="status-strip">
+    <div class="status-card">
+      <div class="label">Stories to focus on</div>
+      <div class="value">6</div>
+      <div class="note">2 worth a look · 35+ skipped · 8 total</div>
+    </div>
+    <div class="status-card">
+      <div class="label">One thing today</div>
+      <div class="value">Build your live dashboard</div>
+      <div class="note">Stripe + Circle + YouTube in one page</div>
+    </div>
+    <div class="status-card">
+      <div class="label">Time to read</div>
+      <div class="value">10 min</div>
+      <div class="note">Saves you ~3 hours of YouTube</div>
+    </div>
+  </div>
+
+  <!-- ONE THING TODAY -->
+  <div class="onething">
+    <div class="onething-kicker">If you only do one thing today</div>
+    <h3>Build a live dashboard that pulls Stripe + Circle + YouTube into one page that auto-refreshes every time you open it.</h3>
+    <p>
+      Ben AI dropped a video this morning showing Claude's new Live Artifacts in action. You build the dashboard ONCE with Claude, hook up your connectors (Stripe, Circle, YouTube, Mailvio), and from then on the dashboard pulls fresh data every time you open it. No scheduled tasks, no daily rebuilds, no AI burning credits overnight. He showed a sales dashboard, a customer-support dashboard with reply-from-here built in, a community-intelligence dashboard tracking the most common issues across his Circle, and a YouTube competitor tracker. For you specifically: your "where am I at financially today" question becomes one click. Same for "what are members complaining about this week" and "which campaign moved revenue Friday." That's the BNSN Customer Service kickoff project staring you in the face, already half-done by Ben.
+    </p>
+    <div class="btn-row" style="margin-top:18px">
+      <a class="btn btn-install" href="https://claude.ai" target="_blank">⚡ Open Claude Cowork</a>
+      <a class="btn btn-ghost" href="https://www.youtube.com/watch?v=PwLqKIGA25c" target="_blank">▶ Ben AI walkthrough (just dropped today)</a>
+    </div>
+  </div>
+
+  <!-- ===== JUST DROPPED TODAY ===== -->
+  <h2 style="color:var(--accent-peach)">🔥 Just dropped this morning</h2>
+  <div class="card" style="border-color:rgba(247,181,137,0.35);background:linear-gradient(180deg,rgba(247,181,137,0.06),var(--surface) 40%)">
+    <div class="why-kicker" style="color:var(--accent-peach)">For you</div>
+    <div class="why-line">A dashboard built once that always shows live data. Replaces 4 tabs with 1.</div>
+    <div class="use-line">Your Stripe revenue tile, Circle "what are members posting about" tile, YouTube growth tile, Mailvio campaign performance tile — all on one page that refreshes the moment you open it. No code. No scheduled jobs. Same pattern works for your sales team, your support queue, your competitor tracking.</div>
+    <div class="creator">Ben AI . posted today</div>
+    <h3>Live Artifacts Just 10x'd Claude Cowork</h3>
+    <p class="what">Claude's new Live Artifacts feature lets you build a dashboard ONCE in Cowork (the desktop/web Claude with connectors). Open it again tomorrow, the data is fresh — Stripe pulls today's revenue, Circle pulls today's posts, YouTube pulls today's views. You can ALSO take action right inside the dashboard: draft a reply to a Circle post, post it to your community, mark a Stripe invoice as paid. Pin it to your Cowork sidebar and it's there forever.</p>
+    <ul class="tldr">
+      <li><strong>Build once, refresh forever.</strong> No daily rebuilds, no scheduled-task token burn.</li>
+      <li><strong>Multiple sources in one view:</strong> Ben pulls YouTube + Bitly + Post Hog into one conversion dashboard. You'd pull Stripe + Circle + Mailvio + YouTube.</li>
+      <li><strong>AI insights baked in:</strong> not just raw numbers — the dashboard tells you what to act on. "Three friction points came up about Obsidian setup this week. Here's a draft reply."</li>
+      <li><strong>Take action from the dashboard:</strong> reply to Circle posts, draft customer-service responses, advance proposals in your CRM.</li>
+      <li><strong>Direct hit on your BNSN CS kickoff this week.</strong> The community-intelligence dashboard Ben showed is exactly what you'd start with.</li>
+    </ul>
+    <div class="btn-row-label">Get it</div>
+    <div class="btn-row">
+      <a class="btn btn-install" href="https://claude.ai" target="_blank">⚡ Open Claude Cowork</a>
+      <a class="btn btn-install" href="https://docs.anthropic.com/en/docs/build-with-claude/artifacts" target="_blank">⚡ Live Artifacts docs</a>
+      <a class="btn btn-ghost" href="https://www.youtube.com/watch?v=PwLqKIGA25c" target="_blank">▶ Watch Ben (16 min)</a>
+    </div>
+    <div class="verify-note">Live Artifacts is a Cowork (claude.ai) feature, not Claude Code. Posted by Ben this morning, 2026-04-27.</div>
+  </div>
+
+  <!-- ===== IMPLEMENT NOW ===== -->
+  <h2>What you should do today</h2>
+
+  <!-- 1. Brock 9 Skills -->
+  <div class="card">
+    <div class="why-kicker">For you</div>
+    <div class="why-line">Direct templates for the AI Collective playbook library you're building this weekend.</div>
+    <div class="use-line">Members get 9 ready-to-use skills the day they sign up. You strip the branding, repackage 3 as your first Collective playbooks, and you've shipped the Skills space launch content in an afternoon.</div>
+    <div class="creator">Brock Mesarich</div>
+    <h3>9 Claude Skills I Can't Live Without</h3>
+    <p class="what">Brock built 9 skills he uses daily and bundled all of them into one downloadable plugin. Each skill is a small recipe Claude follows the same way every time, so you don't keep re-explaining what you want. Most run by themselves on a schedule (every Friday at 9am, end of every day, etc.).</p>
+    <ul class="tldr">
+      <li><strong>Dashboard-style</strong> - locks Claude to your brand colors and fonts on every report it writes.</li>
+      <li><strong>Skills audit</strong> - scores all your skills 0-100, flags duplicates, tells you which to delete. Useful for you specifically: your stack is approaching 50.</li>
+      <li><strong>PDF guide generator</strong> - turns any topic into a clean PDF in the Naval-Almanac style. Lead-magnet ready.</li>
+      <li><strong>End-of-day summary</strong> - 6pm every day, a one-page report of what you and Claude got done.</li>
+      <li><strong>Instagram carousel</strong> - generates the carousel and posts it. One of his hit 60K views.</li>
+      <li>Plus: visual explainer, find-skills, Obsidian daily note, brand carousel.</li>
+    </ul>
+    <div class="btn-row-label">Get it</div>
+    <div class="btn-row">
+      <a class="btn btn-install" href="https://skills.sh" target="_blank">⚡ Browse skills.sh</a>
+      <a class="btn btn-install" href="https://www.youtube.com/watch?v=OK9c7UWl24M" target="_blank">⚡ Plugin link in video description</a>
+      <a class="btn btn-ghost" href="https://www.youtube.com/watch?v=OK9c7UWl24M" target="_blank">▶ Watch (24 min)</a>
+    </div>
+    <div class="verify-note">Plugin download is in Brock's video description (Skool community link). skills.sh is the public directory.</div>
+  </div>
+
+  <!-- 2. Nate Herk Playwright -->
+  <div class="card">
+    <div class="why-kicker">For you</div>
+    <div class="why-line">Lets Isaac log into Circle, Mailvio, or any site and do work for you while you sleep.</div>
+    <div class="use-line">Auto-engage with new posts in your AI Collective space. Auto-reply to Circle DMs in your voice. Pull leads from any site that needs a login. The pattern works on every browser-based tool you use.</div>
+    <div class="creator">Nate Herk</div>
+    <h3>Claude Code + Playwright: Automate Anything That Lives in a Browser</h3>
+    <p class="what">Playwright is a free tool that drives a real Chrome window. Hook it to Claude Code, and Claude can click, type, scroll, take screenshots, and log in to any site for you. Nate showed it doing 3 jobs no other tool can do without paid software.</p>
+    <ul class="tldr">
+      <li><strong>Auto-bug-check your sales pages.</strong> Claude opens the page, clicks every button, screenshots what breaks, fixes the code, re-checks. Loops until clean.</li>
+      <li><strong>Lead scraper that doesn't get blocked.</strong> Search Google for prospects, pull their contact info. When Google blocks the search, it auto-falls-back to DuckDuckGo and keeps going.</li>
+      <li><strong>Logged-in community engagement.</strong> Persists your Skool / Circle / Facebook login. Auto-likes posts from members who hit milestones, drops a personalized comment, replies to DMs. Same pattern works on every site you log into.</li>
+      <li><strong>Important:</strong> use the Playwright CLI, not the Chrome extension version. The extension is slow and burns through your Claude credits 10x faster.</li>
+    </ul>
+    <div class="btn-row-label">Get it</div>
+    <div class="btn-row">
+      <a class="btn btn-install" href="https://playwright.dev/docs/intro" target="_blank">⚡ Install Playwright (docs)</a>
+      <button class="btn btn-install" onclick="copyText('cmd-pw',this)">⚡ Copy install command</button>
+      <a class="btn btn-ghost" href="https://www.youtube.com/watch?v=J-6pnl5DQg8" target="_blank">▶ Watch (16 min)</a>
+    </div>
+    <div class="cmd-block"><span id="cmd-pw">npm install -g playwright &amp;&amp; npx playwright install chromium</span><button class="copy-btn" onclick="copyText('cmd-pw',this)">Copy</button></div>
+  </div>
+
+  <!-- 3. Ben AI Auto Research -->
+  <div class="card">
+    <div class="why-kicker">For you</div>
+    <div class="why-line">A skill that improves your own copy every week without you doing anything.</div>
+    <div class="use-line">Point it at your Mailvio open-rate data on Friday afternoon. By Monday, your subject-line skill is 9-20% better. Same trick works on landing-page headlines, VSL hooks, ad copy. This is the closest thing to a copywriter that gets better while you sleep.</div>
+    <div class="creator">Ben AI</div>
+    <h3>Karpathy's Auto Research Loop, Built as a Claude Skill</h3>
+    <p class="what">Andrej Karpathy (one of the original OpenAI founders) published a research-loop method that trains AI to grade itself and keep only the best version. Ben turned it into a skill anyone can install. You give it the rules ("subject line must be under 50 characters, no em dash, must use PAS or AIDA"), point it at your past performance data, and it runs 5-10 versions of itself, scores each one, throws out the losers, keeps the winners. Out of the box, his LinkedIn skill jumped from 80% pass-rate to 100% on 2 rules. From 68% to 95% on 4 rules.</p>
+    <ul class="tldr">
+      <li><strong>Real numbers from Ben's tests:</strong> LinkedIn writing skill: 80% → 100% on 2 criteria, then 68% → 95% on 4 criteria. Cloud routing skill: +9.9%.</li>
+      <li><strong>3 layers of rules to teach it:</strong> hard rules (subject under 50 chars), pattern rules (use PAS or AIDA), tone rules (sounds like you not a robot).</li>
+      <li><strong>Cap iterations at 10.</strong> More than 15 makes results worse, not better.</li>
+      <li><strong>Pair with Claude's scheduled tasks</strong> for a Mailvio subject-line optimizer that runs every Friday by itself.</li>
+    </ul>
+    <div class="btn-row-label">Get it</div>
+    <div class="btn-row">
+      <a class="btn btn-install" href="https://github.com/BenAI92" target="_blank">⚡ BenAI92 GitHub</a>
+      <a class="btn btn-ghost" href="https://www.youtube.com/watch?v=bc4NrE0cOE0" target="_blank">▶ Watch (22 min)</a>
+    </div>
+    <div class="verify-note">Ben said the auto-research zip is in his GitHub repo. Click through to find the latest auto-research repo on his profile.</div>
+  </div>
+
+  <!-- 4. Ondrej GPT 5.5 -->
+  <div class="card">
+    <div class="why-kicker">For you</div>
+    <div class="why-line">Compete-ready intel and a fast lane to test if GPT 5.5 ships your front-end work better than Claude.</div>
+    <div class="use-line">Saves you the "is everyone using this and I'm behind" panic by giving you the actual benchmark + price story in 5 minutes. Then turns into a 5-minute Codex test against a real BNSN page so you have a real opinion, not a Twitter take.</div>
+    <div class="creator">David Ondrej</div>
+    <h3>OpenAI Just Shipped GPT 5.5 (and the Anthropic Read-Between-the-Lines)</h3>
+    <p class="what">OpenAI's flagship model dropped this week. Live in ChatGPT Plus, Pro, Business, Enterprise, and inside Codex (their coding tool). The API is "very soon." Pro tier ($200/mo) gets a special "5.5 Pro" version that thinks for up to 20 minutes on hard problems. The interesting business angle: OpenAI's blog post took a visible jab at Anthropic about token efficiency, and Anthropic's Opus 4.7 just regressed on long-document work. OpenAI has the compute lead going into 2026.</p>
+    <ul class="tldr">
+      <li><strong>Where to use it:</strong> ChatGPT Plus / Pro / Business / Enterprise, plus Codex. API "very soon," not on OpenRouter yet.</li>
+      <li><strong>Costs about 20% more than the last GPT</strong> for the same task. Per-token price doubled but it uses fewer tokens, so net cost barely moved.</li>
+      <li><strong>Real demos:</strong> built a working SVG unicorn from one tweet image, generated game-ready sprites with image-gen 2.0, ran auto-tests with Playwright built-in.</li>
+      <li><strong>Translation for you:</strong> if your front-end work on BNSN / Collective / YouCloned is the bottleneck, this might cut it in half. If it doesn't, Claude is still your tool and you've stopped wondering.</li>
+    </ul>
+    <div class="btn-row-label">Try it</div>
+    <div class="btn-row">
+      <a class="btn btn-install" href="https://chatgpt.com/codex" target="_blank">⚡ Open Codex (use GPT 5.5)</a>
+      <a class="btn btn-install" href="https://chatgpt.com" target="_blank">⚡ Open ChatGPT (5.5 in model picker)</a>
+      <a class="btn btn-ghost" href="https://www.youtube.com/watch?v=T_xyhjfFCdY" target="_blank">▶ Watch Ondrej (12 min)</a>
+    </div>
+  </div>
+
+  <!-- 5. Jack NotebookLM -->
+  <div class="card">
+    <div class="why-kicker">For you</div>
+    <div class="why-line">Unlocks every NotebookLM you own (Copy Playbook, BNSN Intel, Email Library, AI Brain) so Claude can actually use them.</div>
+    <div class="use-line">Bulk-export every transcript out of your Email Library notebook to local files. Then Auto Research (skill #3 above) can read all of them at once and surface your top-performing subject-line patterns. Saves you the hours of clicking through NotebookLM one source at a time.</div>
+    <div class="creator">Jack Roberts (@Itssssss_Jack)</div>
+    <h3>Claude Code + NotebookLM: Bulk Export, Cross-Notebook Search, and a Chat App on Top</h3>
+    <p class="what">NotebookLM has no public API. Jack built a Claude skill that logs into NotebookLM as you (using your Chrome login) and reads/writes everything for you. Plus a Chrome extension that bulk-adds an entire YouTube channel as sources. Solves NotebookLM's two big walls: it can't do math on your data, and your data is locked inside.</p>
+    <ul class="tldr">
+      <li><strong>Bulk-export every transcript</strong> from any of your 4 notebooks to local files in one command.</li>
+      <li><strong>Add a creator's entire YouTube channel</strong> as sources with one click (Chrome extension).</li>
+      <li><strong>Build a chat app on top of your notebook</strong> using Lovable + Pinecone. Members get a custom AI trained on your library, branded as yours.</li>
+      <li><strong>Numbers your notebook can't crunch</strong> get pushed to Supabase so Claude can analyze trends in your performance data.</li>
+    </ul>
+    <div class="btn-row-label">Get it</div>
+    <div class="btn-row">
+      <a class="btn btn-install" href="https://aiwithjack.com" target="_blank">⚡ aiwithjack.com</a>
+      <a class="btn btn-install" href="https://chrome.google.com/webstore/search/youtube%20notebooklm" target="_blank">⚡ YouTube → NotebookLM extension</a>
+      <a class="btn btn-ghost" href="https://www.youtube.com/watch?v=PkOlfB3RY5Q" target="_blank">▶ Watch (35 min)</a>
+    </div>
+    <div class="verify-note">Jack distributes his skill from his site (aiwithjack.com). Verify the exact download path before clicking install.</div>
+  </div>
+
+  <!-- ===== SAVE FOR LATER ===== -->
+  <h2>Worth a look (not today)</h2>
+
+  <div class="save-card">
+    <div class="why-kicker">For you</div>
+    <div class="why-line">Useful for client work or a YouCloned member playbook. Not for your own pages right now.</div>
+    <div class="creator">Jono Catliff</div>
+    <h3>Claude Design + Claude Code = $15K Client Websites</h3>
+    <p>Jono ships full client websites in 10 minutes using a free site (getdesign.md) that has 68 pre-built brand kits (Apple, Airbnb, Claude, BMW, etc.) you paste into Claude. Useful as a member playbook for non-coder Collective folks who want to ship their own sales page this week.</p>
+    <div class="btn-row">
+      <a class="btn btn-install" href="https://getdesign.md" target="_blank">⚡ getdesign.md (68 brand kits)</a>
+      <a class="btn btn-ghost" href="https://www.youtube.com/watch?v=xYv4_cTOSNM" target="_blank">▶ Watch (15 min)</a>
+    </div>
+  </div>
+
+  <div class="save-card">
+    <div class="why-kicker">For you</div>
+    <div class="why-line">Numbers to know if a customer asks "should I switch from Claude?"</div>
+    <div class="creator">Chase H AI</div>
+    <h3>DeepSeek V4 vs Opus 4.7 vs GPT 5.5: The Real Benchmark Story</h3>
+    <p>Side-by-side: GPT 5.5 wins on terminal/coding speed. Claude 4.7 still wins on real GitHub work and visual taste. DeepSeek V4 is 8x cheaper but unusable for serious work. Opus 4.7's long-document work regressed. Worth the read so you have a confident answer when a Collective member asks which to use.</p>
+    <div class="btn-row">
+      <a class="btn btn-ghost" href="https://www.youtube.com/watch?v=uT2m7VD99qA" target="_blank">▶ Watch (18 min)</a>
+    </div>
+  </div>
+
+  <!-- ===== SKIPPED ===== -->
+  <h2>Skipped today</h2>
+  <p style="color:var(--ink-3);font-size:14px;line-height:1.7;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 22px">
+    35+ "Claude Design just dropped" reaction videos this week (Eliot Prince, Jack, Brock x2, Chase x2, Nate Herk). Same news, the Jono pick above is the most actionable.
+    Multiple GPT 5.5 reactions from Wes Roth, Berman, Wolfe (Ondrej covers it cleanest above).
+    Claude Code 2.0 / skills duplicates (Jack, Ben AI Cowork course): redundant with Brock's plugin.
+    Bycloud's deep-technical videos (JEPA, TurboQuant, context window): not for your stack.
+    Hermes Agent (Wes Roth, Ondrej): outside Anthropic, save only if you ever shop alternatives.
+    Wolfe meta videos and AI news roundups: aggregator, content already covered above.
+  </p>
+
+  <div class="footer">
+    <div>Pulled from 12 channels . 7 transcripts read . <code>run-2026-04-26/</code></div>
+    <div>Generated by Isaac . Sunday 2026-04-26</div>
+  </div>
+
+</div>
+
+<script>
+  function togglePanel(id){var el=document.getElementById(id);if(!el)return;el.classList.toggle('open')}
+  function copyText(id,btn){var t=document.getElementById(id).innerText;navigator.clipboard.writeText(t).then(function(){if(btn){var o=btn.innerText;btn.innerText='Copied';setTimeout(function(){btn.innerText=o},1200)}})}
+</script>
+</body>
+</html>
