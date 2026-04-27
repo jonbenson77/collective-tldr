@@ -178,11 +178,45 @@
       <li><strong>Take action from the dashboard:</strong> reply to Circle posts, draft customer-service responses, advance proposals in your CRM.</li>
       <li><strong>Direct hit on your BNSN CS kickoff this week.</strong> The community-intelligence dashboard Ben showed is exactly what you'd start with.</li>
     </ul>
+    <div class="btn-row-label">Consume</div>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="https://www.youtube.com/watch?v=PwLqKIGA25c" target="_blank">▶ Watch Ben AI (16 min)</a>
+      <button class="btn btn-ghost" onclick="togglePanel('ben-details')">📖 Read the details</button>
+    </div>
     <div class="btn-row-label">Get it</div>
     <div class="btn-row">
       <a class="btn btn-install" href="https://claude.ai" target="_blank">⚡ Open Claude Cowork</a>
-      <a class="btn btn-install" href="https://docs.anthropic.com/en/docs/build-with-claude/artifacts" target="_blank">⚡ Live Artifacts docs</a>
-      <a class="btn btn-ghost" href="https://www.youtube.com/watch?v=PwLqKIGA25c" target="_blank">▶ Watch Ben (16 min)</a>
+    </div>
+    <div class="panel" id="ben-details">
+      <div class="panel-inner">
+        <h5>What Live Artifacts actually is</h5>
+        <p>Artifacts isn't new. The "live" part is. Before today, Claude could build you a dashboard once. To refresh it, you'd schedule a task to rebuild the whole HTML from scratch every day, which burned credits and took time. Live Artifacts means you build the dashboard ONCE in Claude Cowork, hook up your connectors (Stripe, Circle, Mailvio, YouTube, whatever) using MCPs, and from then on the dashboard pulls fresh data the moment you open it. Pin it to your Cowork sidebar and it's always one click away.</p>
+
+        <h5>The 7 dashboards Ben demoed (and your version of each)</h5>
+        <ul>
+          <li><strong>Conversion dashboard:</strong> YouTube + Bitly + Post Hog showing conversions per video per offer. Your version: BNSN signups by traffic source, Mailvio link clicks, AI Collective conversions.</li>
+          <li><strong>Business intelligence dashboard:</strong> Stripe + analytics with AI-written strategy suggestions on top of raw KPIs. Your version: BNSN MRR + churn + the Collective subscriber count, with weekly insights on which offer's pulling weight.</li>
+          <li><strong>Community intelligence dashboard:</strong> Circle posts + Fireflies customer support. Tells him "the top 3 friction points this week were X, Y, Z." Your version: drop your BNSN Customer Service kickoff straight into this. The dashboard tells you what members are stuck on, drafts your reply, lets you post it from inside the artifact.</li>
+          <li><strong>Customer support dashboard:</strong> AI drafts replies, you click to post directly into Circle. Saves a round-trip to the Circle UI for every reply.</li>
+          <li><strong>Sales dashboard:</strong> inbox + calendar + Pandadoc + CRM all in one view. Move deals from inside the dashboard. He doesn't run sales but his rep does.</li>
+          <li><strong>YouTube competitor dashboard:</strong> who shipped what this week, keyword opportunities, this week's breakout videos. Direct replacement for your "watch 12 channels manually" workflow — same source list as this brief, fed into a dashboard.</li>
+          <li><strong>Second brain / team to-do dashboard:</strong> tracks what every team member is working on, surfaces what's overdue. He noted "I need to get on my taxes" was the top item. Your version: Ben Cope's CRM tasks, Olya's project status, Isaac's open todos all in one view.</li>
+        </ul>
+
+        <h5>How it actually works (under the hood)</h5>
+        <p>You build the artifact ONCE with Claude. You connect the softwares it needs through Anthropic's MCP connectors. Every time the artifact opens or refreshes, Claude pulls live data from those connected sources and re-renders the page in place. The build itself is one conversation. The refresh is automatic.</p>
+
+        <h5>Pitfalls Ben flagged</h5>
+        <ul>
+          <li><strong>Connector limits.</strong> Each MCP connector has rate limits. If you over-pull, the dashboard chokes. Build with that in mind.</li>
+          <li><strong>Auth handling.</strong> Connectors that require OAuth (Circle, Stripe) tie to your Cowork session. Logging out invalidates them.</li>
+          <li><strong>Don't try to make ONE giant dashboard.</strong> Build 5 small ones. He learned this the hard way.</li>
+          <li><strong>The action layer is real.</strong> "Reply to this Circle post from here" works. Don't enable destructive actions (delete, refund, ban) from inside the dashboard until you're sure of the access controls.</li>
+        </ul>
+
+        <h5>Why this matters for the AI Collective</h5>
+        <p>This is the canonical pattern for what your members keep asking for: "I want my business in one page." A 30-min Collective playbook walking through "your first Live Artifact dashboard" would land. Pair it with the BNSN Customer Service kickoff (week of Apr 28) and you have your first Members-Only Friday call topic locked in.</p>
+      </div>
     </div>
     <div class="verify-note">Live Artifacts is a Cowork (claude.ai) feature, not Claude Code. Posted by Ben this morning, 2026-04-27.</div>
   </div>
@@ -254,10 +288,10 @@
     </ul>
     <div class="btn-row-label">Get it</div>
     <div class="btn-row">
-      <a class="btn btn-install" href="https://github.com/BenAI92" target="_blank">⚡ BenAI92 GitHub</a>
+      <a class="btn btn-install" href="https://www.youtube.com/watch?v=bc4NrE0cOE0" target="_blank">⚡ Plugin link in video description</a>
       <a class="btn btn-ghost" href="https://www.youtube.com/watch?v=bc4NrE0cOE0" target="_blank">▶ Watch (22 min)</a>
     </div>
-    <div class="verify-note">Ben said the auto-research zip is in his GitHub repo. Click through to find the latest auto-research repo on his profile.</div>
+    <div class="verify-note">Ben distributes the auto-research plugin via his video description. Click "Watch" and grab the GitHub link from his pinned comment / description.</div>
   </div>
 
   <!-- 4. Ondrej GPT 5.5 -->
@@ -342,9 +376,107 @@
     Wolfe meta videos and AI news roundups: aggregator, content already covered above.
   </p>
 
+  <!-- ===== YOUR SOURCES ===== -->
+  <h2>Your sources</h2>
+  <div style="background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:26px 30px;margin-bottom:20px">
+
+    <style>
+      .src-list{display:grid;grid-template-columns:1fr 1fr;gap:8px 16px;margin:10px 0 18px}
+      .src-row{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--bg);border:1px solid var(--line);border-radius:6px;font-size:14px;color:var(--ink-2)}
+      .src-row.muted{opacity:.45}
+      .src-row.muted .src-name{text-decoration:line-through}
+      .src-name{color:var(--ink)}
+      .src-toggle{font-size:11px;padding:4px 9px;background:var(--green-soft);color:var(--green);border:1px solid rgba(111,207,151,0.35);border-radius:4px;cursor:pointer;font-weight:700;letter-spacing:.04em}
+      .src-row.muted .src-toggle{background:var(--surface-3);color:var(--ink-3);border-color:var(--line-strong)}
+      .src-toggle:hover{filter:brightness(1.15)}
+      .src-section-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin:22px 0 10px}
+      .src-section-label:first-child{margin-top:0}
+      .install-meter{display:flex;gap:12px;margin-top:14px;padding:12px 14px;background:var(--bg);border-radius:7px;border:1px solid var(--line-strong);font-size:13px;color:var(--ink-2);align-items:center}
+      .install-meter .bar{flex:1;height:6px;background:var(--surface-3);border-radius:999px;overflow:hidden}
+      .install-meter .bar .fill{height:100%;background:linear-gradient(90deg,var(--green),var(--accent-peach));width:0%}
+      .install-meter .count{font-weight:700;color:var(--ink);min-width:60px;text-align:right;font-family:var(--font-mono)}
+    </style>
+
+    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px">
+      <div style="color:var(--ink);font-size:17px;font-weight:700">Shared pool (click to mute / unmute)</div>
+      <div style="color:var(--ink-3);font-size:13px">22 default sources</div>
+    </div>
+
+    <div class="src-section-label">Major LLM vendors (6)</div>
+    <div class="src-list">
+      <div class="src-row"><span class="src-name">anthropic.com/news</span><button class="src-toggle" onclick="toggleSrc(this)">Active</button></div>
+      <div class="src-row"><span class="src-name">openai.com/news</span><button class="src-toggle" onclick="toggleSrc(this)">Active</button></div>
+      <div class="src-row"><span class="src-name">x.ai/news (Grok)</span><button class="src-toggle" onclick="toggleSrc(this)">Active</button></div>
+      <div class="src-row"><span class="src-name">deepmind.google</span><button class="src-toggle" onclick="toggleSrc(this)">Active</button></div>
+      <div class="src-row"><span class="src-name">ai.meta.com/blog</span><button class="src-toggle" onclick="toggleSrc(this)">Active</button></div>
+      <div class="src-row"><span class="src-name">mistral.ai/news</span><button class="src-toggle" onclick="toggleSrc(this)">Active</button></div>
+    </div>
+
+    <div class="src-section-label">Creators (12)</div>
+    <div class="src-list">
+      <div class="src-row"><span class="src-name">@Itssssss_Jack (Jack Roberts)</span><button class="src-toggle" onclick="toggleSrc(this)">Active</button></div>
+      <div class="src-row"><span class="src-name">@nateherk (Nate Herk)</span><button class="src-toggle" onclick="toggleSrc(this)">Active</button></div>
+      <div class="src-row"><span class="src-name">@princeeliot (Eliot Prince)</span><button class="src-toggle" onclick="toggleSrc(this)">Active</button></div>
+      <div class="src-row"><span class="src-name">@jonocatliff (Jono Catliff)</span><button class="src-toggle" onclick="toggleSrc(this)">Active</button></div>
+      <div class="src-row"><span class="src-name">@BenAI92 (Ben AI)</span><button class="src-toggle" onclick="toggleSrc(this)">Active</button></div>
+      <div class="src-row"><span class="src-name">@BrockMesarich (Brock Mesarich)</span><button class="src-toggle" onclick="toggleSrc(this)">Active</button></div>
+      <div class="src-row"><span class="src-name">@Chase-H-AI (Chase AI)</span><button class="src-toggle" onclick="toggleSrc(this)">Active</button></div>
+      <div class="src-row"><span class="src-name">Matthew Berman</span><button class="src-toggle" onclick="toggleSrc(this)">Active</button></div>
+      <div class="src-row"><span class="src-name">AI Explained (bycloud)</span><button class="src-toggle" onclick="toggleSrc(this)">Active</button></div>
+      <div class="src-row"><span class="src-name">Wes Roth</span><button class="src-toggle" onclick="toggleSrc(this)">Active</button></div>
+      <div class="src-row"><span class="src-name">David Ondrej</span><button class="src-toggle" onclick="toggleSrc(this)">Active</button></div>
+      <div class="src-row"><span class="src-name">Matt Wolfe / Future Tools</span><button class="src-toggle" onclick="toggleSrc(this)">Active</button></div>
+    </div>
+
+    <div class="src-section-label">Tools + newsletters (4)</div>
+    <div class="src-list">
+      <div class="src-row"><span class="src-name">cursor.com/changelog</span><button class="src-toggle" onclick="toggleSrc(this)">Active</button></div>
+      <div class="src-row"><span class="src-name">The Rundown AI</span><button class="src-toggle" onclick="toggleSrc(this)">Active</button></div>
+      <div class="src-row"><span class="src-name">Ben's Bites</span><button class="src-toggle" onclick="toggleSrc(this)">Active</button></div>
+      <div class="src-row"><span class="src-name">TLDR AI</span><button class="src-toggle" onclick="toggleSrc(this)">Active</button></div>
+    </div>
+
+    <div style="margin:28px 0 6px;padding-top:22px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline">
+      <div style="color:var(--ink);font-size:17px;font-weight:700">Your personal additions</div>
+      <div style="color:var(--ink-3);font-size:13px">0 of 12 used . paste any URL</div>
+    </div>
+
+    <div class="install-meter" style="margin-top:14px">
+      <span>Slots used</span>
+      <div class="bar"><div class="fill" style="width:0%"></div></div>
+      <span class="count">0 / 12</span>
+    </div>
+
+    <div style="margin-top:20px;display:grid;grid-template-columns:1fr auto;gap:12px">
+      <input type="text" placeholder="Paste any URL: YouTube channel, RSS, X profile, blog, newsletter..." style="background:var(--bg);border:1px solid var(--line-strong);border-radius:7px;padding:12px 16px;color:var(--ink);font-size:15px;font-family:var(--font-sans);outline:none">
+      <button class="btn btn-action" style="margin-top:0">+ Add source</button>
+    </div>
+  </div>
+
+  <!-- ===== YOUR PROFILE ===== -->
+  <h2>Your profile</h2>
+  <div style="background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:26px 30px;margin-bottom:20px">
+    <div style="display:grid;grid-template-columns:140px 1fr;gap:14px 20px;font-size:16px;line-height:1.55">
+      <div style="color:var(--ink-3);font-weight:700">Stack</div>
+      <div style="color:var(--ink)">Claude Code, Cursor, Obsidian, NotebookLM, ElevenLabs, BNSN, YouCloned</div>
+      <div style="color:var(--ink-3);font-weight:700">Projects</div>
+      <div style="color:var(--ink)">SLIDR, BNSN, AI Collective, jonbenson.com V3, Daily TLDR</div>
+      <div style="color:var(--ink-3);font-weight:700">Role</div>
+      <div style="color:var(--ink)">SaaS founder, copywriter (20+ years), Texan poet, Orville fan</div>
+      <div style="color:var(--ink-3);font-weight:700">Interests</div>
+      <div style="color:var(--ink)">Agents, skills, MCP, video production, copy AI, automation</div>
+      <div style="color:var(--ink-3);font-weight:700">Skip</div>
+      <div style="color:var(--ink)">Enterprise-only features, pure reaction content, AI-generated photos, serif fonts</div>
+    </div>
+    <div class="btn-row" style="margin-top:22px">
+      <button class="btn btn-action">⚙ Update my profile</button>
+      <button class="btn btn-ghost">⚡ Run my brief now</button>
+    </div>
+  </div>
+
   <div class="footer">
-    <div>Pulled from 12 channels . 7 transcripts read . <code>run-2026-04-26/</code></div>
-    <div>Generated by Isaac . Sunday 2026-04-26</div>
+    <div>Pulled from 12 channels . 8 items synthesized . <code>run-2026-04-27/</code></div>
+    <div>Generated by Isaac . Monday 2026-04-27</div>
   </div>
 
 </div>
@@ -352,6 +484,7 @@
 <script>
   function togglePanel(id){var el=document.getElementById(id);if(!el)return;el.classList.toggle('open')}
   function copyText(id,btn){var t=document.getElementById(id).innerText;navigator.clipboard.writeText(t).then(function(){if(btn){var o=btn.innerText;btn.innerText='Copied';setTimeout(function(){btn.innerText=o},1200)}})}
+  function toggleSrc(btn){var row=btn.parentElement;row.classList.toggle('muted');btn.innerText=row.classList.contains('muted')?'Muted':'Active'}
 </script>
 </body>
 </html>
