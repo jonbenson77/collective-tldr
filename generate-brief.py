@@ -201,78 +201,86 @@ Source videos from today's AI creator channels:
 
 {sources_text}
 
-Generate a JSON brief with this structure. Be specific and concrete - name exact features, real use cases, specific numbers. No em dashes (use plain dash or colon). No vague statements.
+Generate a JSON brief. Be specific - name exact features, real numbers, concrete steps. No em dashes. No vague statements. Second person throughout.
+
+Each card item must include a "details" array - this is the expandable breakout panel the member clicks to read the full breakdown. Make these thorough: explain HOW it works, show the exact steps, give the numbers. Think of it as the transcript-quality summary the member would otherwise have to watch the full video to get.
+
+If a video shows something installable (a Claude skill, a plugin, a script), include "install_url" and "install_label" so the member can get it in one click.
 
 {{
-  "total_scanned": <total videos reviewed>,
-  "focus_count": <2-4, items worth acting on>,
+  "total_scanned": <int>,
+  "focus_count": <int - items worth acting on>,
   "one_thing": {{
-    "channel": "<creator name>",
-    "video_id": "<youtube id>",
-    "duration_min": <minutes>,
-    "headline": "<compelling action headline - what to BUILD or DO today>",
-    "subtitle": "<what it unlocks in one concrete line>",
-    "body": "<3-4 sentences written in second person. What it is. Why it matters to you. What to do with it today.>",
-    "for_you": "<one sentence starting with 'You' or 'Your'>"
+    "channel": "<creator>",
+    "video_id": "<yt id>",
+    "duration_min": <int>,
+    "headline": "<action headline - what to BUILD or DO>",
+    "subtitle": "<what it unlocks in one line>",
+    "body": "<3-4 sentences in second person: what it is, why it matters today, what to do first>",
+    "for_you": "<one sentence starting with You/Your>"
   }},
   "hot_items": [
     {{
-      "channel": "<creator name>",
+      "channel": "<creator>",
       "video_id": "<id>",
-      "duration_min": <minutes>,
-      "for_you": "<one sentence starting with You/Your - why this matters>",
-      "use_case": "<one sentence starting with You/Your - specific thing to do>",
-      "headline": "<article-style headline>",
-      "what": "<2-3 sentences written in second person>",
-      "tldr": [
-        "**Bold term:** specific point",
-        "**Bold term:** specific point",
-        "**Bold term:** specific point",
-        "**Bold term:** specific point"
+      "duration_min": <int>,
+      "for_you": "<starts with You/Your>",
+      "use_case": "<starts with You/Your - the specific thing to do>",
+      "headline": "<headline>",
+      "what": "<3-4 sentence summary of what the video actually shows - the full gist so you don't need to watch it>",
+      "tldr": ["**Term:** detail", "**Term:** detail", "**Term:** detail", "**Term:** detail"],
+      "details": [
+        {{"heading": "<h5 title>", "body": "<paragraph or bullet-list HTML>"}},
+        {{"heading": "<h5 title>", "body": "<paragraph or bullet-list HTML>"}}
       ],
+      "install_url": "<direct URL to install/download if one exists, else null>",
+      "install_label": "<e.g. Install Claude skill / Download plugin / Open skill page>",
       "verify_note": "<source + upload date>"
     }}
   ],
   "implement_items": [
     {{
-      "channel": "<creator name>",
+      "channel": "<creator>",
       "video_id": "<id>",
-      "duration_min": <minutes>,
-      "for_you": "<one sentence starting with You/Your>",
-      "use_case": "<specific use case in second person>",
+      "duration_min": <int>,
+      "for_you": "<starts with You/Your>",
+      "use_case": "<starts with You/Your>",
       "headline": "<headline>",
-      "what": "<2 sentences in second person>",
-      "tldr": [
-        "**Bold term:** specific point",
-        "**Bold term:** specific point",
-        "**Bold term:** specific point"
-      ]
+      "what": "<3-4 sentence summary of what the video shows>",
+      "tldr": ["**Term:** detail", "**Term:** detail", "**Term:** detail"],
+      "details": [
+        {{"heading": "<h5 title>", "body": "<paragraph or bullet-list HTML>"}},
+        {{"heading": "<h5 title>", "body": "<paragraph or bullet-list HTML>"}}
+      ],
+      "install_url": "<URL or null>",
+      "install_label": "<label or null>"
     }}
   ],
   "save_items": [
     {{
-      "channel": "<creator name>",
+      "channel": "<creator>",
       "video_id": "<id>",
       "headline": "<title>",
-      "why_later": "<one sentence - why save for later not today>"
+      "why_later": "<one sentence>"
     }}
   ],
-  "skipped_count": <number>,
-  "skipped_note": "<what was skipped and why in one sentence>",
-  "read_time_min": <estimated read time>
+  "skipped_count": <int>,
+  "skipped_note": "<what got skipped and why>",
+  "read_time_min": <int>
 }}
 
 Rules:
-- hot_items: 1-2 max (freshest, most urgent)
-- implement_items: 2-3 items
-- save_items: 1-2 items
-- tldr bullets: **Bold phrase:** then detail. No em dashes.
-- Every "for_you" and "use_case" field starts with "You" or "Your" - never the member's name
-- Specific tools, features, outcomes - not vague generalities"""
+- hot_items: 1-2 max
+- implement_items: 2-3
+- save_items: 1-2
+- tldr bullets: **Bold:** then detail. No em dashes anywhere.
+- details panels: minimum 2 sections per item, each with real depth
+- for_you / use_case: always start with You/Your, never the member's name
+- install_url: include whenever the video links to a skill, plugin, repo, or tool download"""
 
     response = client.messages.create(
         model="claude-sonnet-4-6",
-        max_tokens=4000,
+        max_tokens=6000,
         messages=[{"role": "user", "content": prompt}],
     )
 
@@ -286,7 +294,6 @@ def build_html(member_name: str, member_email: str, brief: dict, member_context:
     first_name = member_name.split()[0]
     today = datetime.now()
     date_str = today.strftime("%A, %B %-d, %Y")
-    date_short = today.strftime("%b %-d")
 
     def yt_url(vid_id: str) -> str:
         return f"https://www.youtube.com/watch?v={vid_id}"
@@ -298,67 +305,78 @@ def build_html(member_name: str, member_email: str, brief: dict, member_context:
                 end_bold = b.find("**", 2)
                 if end_bold > 0:
                     bold = b[2:end_bold]
-                    rest = b[end_bold + 2:]
-                    items.append(f"<li><strong>{bold}</strong>{rest}</li>")
+                    rest = b[end_bold + 2:].lstrip(":")
+                    items.append(f"<li><strong>{bold}:</strong> {rest.strip()}</li>")
                     continue
             items.append(f"<li>{b}</li>")
         return "\n".join(items)
+
+    def details_html(sections: list[dict]) -> str:
+        if not sections:
+            return ""
+        parts = []
+        for s in sections:
+            heading = s.get("heading", "")
+            body = s.get("body", "")
+            parts.append(f"<h5>{heading}</h5>\n{body}")
+        return "\n".join(parts)
+
+    def card_html(item: dict, panel_id: str, is_hot: bool = False) -> str:
+        border = 'style="border-color:rgba(247,181,137,0.35);background:linear-gradient(180deg,rgba(247,181,137,0.06),var(--surface) 40%)"' if is_hot else ""
+        kicker_color = 'style="color:var(--accent-peach)"' if is_hot else ""
+        posted = " . posted today" if is_hot else ""
+        vid_id = item.get("video_id", "")
+        install_url = item.get("install_url") or ""
+        install_label = item.get("install_label") or "Install"
+        has_details = bool(item.get("details"))
+        has_install = bool(install_url and install_url != "null")
+        panel_section = ""
+        if has_details:
+            panel_section = f"""
+    <div class="panel" id="{panel_id}">
+      <div class="panel-inner">
+{details_html(item.get('details', []))}
+      </div>
+    </div>"""
+        read_btn = f'<button class="btn btn-ghost" onclick="togglePanel(\'{panel_id}\')">&#128218; Read the details</button>' if has_details else ""
+        install_btn = f'<a class="btn btn-install" href="{install_url}" target="_blank">&#9889; {install_label}</a>' if has_install else ""
+        get_row = f'<div class="btn-row-label">Get it</div><div class="btn-row">{install_btn}</div>' if has_install else ""
+        verify = f'<div class="verify-note">{item.get("verify_note","")}</div>' if item.get("verify_note") else ""
+        return f"""
+  <div class="card" {border}>
+    <div class="why-kicker" {kicker_color}>For you</div>
+    <div class="why-line">{item.get('for_you','')}</div>
+    <div class="use-line">{item.get('use_case','')}</div>
+    <div class="creator">{item.get('channel','')}{posted}</div>
+    <h3>{item.get('headline','')}</h3>
+    <p class="what">{item.get('what','')}</p>
+    <ul class="tldr">
+{tldr_html(item.get('tldr', []))}
+    </ul>
+    <div class="btn-row-label">Consume</div>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="{yt_url(vid_id)}" target="_blank">&#9654; Watch {item.get('channel','')} ({item.get('duration_min','')} min)</a>
+      {read_btn}
+    </div>
+    {get_row}
+    {panel_section}
+    {verify}
+  </div>"""
 
     one = brief.get("one_thing", {})
     hot = brief.get("hot_items", [])
     impl = brief.get("implement_items", [])
     save = brief.get("save_items", [])
 
-    # Build hot items HTML
-    hot_html = ""
-    for i, item in enumerate(hot):
-        panel_id = f"hot-panel-{i}"
-        hot_html += f"""
-  <div class="card" style="border-color:rgba(247,181,137,0.35);background:linear-gradient(180deg,rgba(247,181,137,0.06),var(--surface) 40%)">
-    <div class="why-kicker" style="color:var(--accent-peach)">For you</div>
-    <div class="why-line">{item.get('for_you','')}</div>
-    <div class="use-line">{item.get('use_case','')}</div>
-    <div class="creator">{item.get('channel','')} . posted today</div>
-    <h3>{item.get('headline','')}</h3>
-    <p class="what">{item.get('what','')}</p>
-    <ul class="tldr">
-{tldr_html(item.get('tldr', []))}
-    </ul>
-    <div class="btn-row-label">Consume</div>
-    <div class="btn-row">
-      <a class="btn btn-primary" href="{yt_url(item['video_id'])}" target="_blank">&#9654; Watch {item.get('channel','')} ({item.get('duration_min','')} min)</a>
-    </div>
-    <div class="verify-note">{item.get('verify_note','')}</div>
-  </div>"""
+    hot_html = "\n".join(card_html(item, f"hot-{i}", is_hot=True) for i, item in enumerate(hot))
+    impl_html = "\n".join(card_html(item, f"impl-{i}", is_hot=False) for i, item in enumerate(impl))
 
-    # Build implement items HTML
-    impl_html = ""
-    for i, item in enumerate(impl):
-        panel_id = f"impl-panel-{i}"
-        impl_html += f"""
-  <div class="card">
-    <div class="why-kicker">For you</div>
-    <div class="why-line">{item.get('for_you','')}</div>
-    <div class="use-line">{item.get('use_case','')}</div>
-    <div class="creator">{item.get('channel','')}</div>
-    <h3>{item.get('headline','')}</h3>
-    <p class="what">{item.get('what','')}</p>
-    <ul class="tldr">
-{tldr_html(item.get('tldr', []))}
-    </ul>
-    <div class="btn-row-label">Consume</div>
-    <div class="btn-row">
-      <a class="btn btn-primary" href="{yt_url(item['video_id'])}" target="_blank">&#9654; Watch {item.get('channel','')} ({item.get('duration_min','')} min)</a>
-    </div>
-  </div>"""
-
-    # Build save items HTML
     save_html = ""
     for item in save:
         save_html += f"""
       <div class="src-row">
         <span class="src-name">
-          <a href="{yt_url(item['video_id'])}" target="_blank" style="color:var(--ink-2);text-decoration:none">{item.get('channel','')} - {item.get('headline','')}</a>
+          <a href="{yt_url(item.get('video_id',''))}" target="_blank" style="color:var(--ink-2);text-decoration:none">{item.get('channel','')} - {item.get('headline','')}</a>
         </span>
         <span class="src-badge skip">Later</span>
       </div>
@@ -451,7 +469,13 @@ def build_html(member_name: str, member_email: str, brief: dict, member_context:
   .src-badge{{font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;white-space:nowrap}}
   .src-badge.skip{{background:var(--skip-soft);color:var(--skip)}}
   .sources-box{{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-card);padding:20px 24px;margin-top:32px}}
-  footer{{margin-top:64px;padding-top:24px;border-top:1px solid var(--line-soft);text-align:center;font-size:13px;color:var(--ink-faint)}}
+  .panel{{overflow:hidden;max-height:0;transition:max-height .4s ease}}
+  .panel.open{{max-height:9999px}}
+  .panel-inner{{padding:22px 0 8px;border-top:1px solid var(--line);margin-top:18px}}
+  .panel-inner h5{{font-size:16px;font-weight:700;color:var(--ink);margin:20px 0 8px}}
+  .panel-inner h5:first-child{{margin-top:0}}
+  .panel-inner p,.panel-inner li{{font-size:15px;color:var(--ink-2);line-height:1.65}}
+  .panel-inner ul,.panel-inner ol{{padding-left:20px;margin:6px 0 14px}}
   @media(max-width:640px){{
     .status-strip{{grid-template-columns:1fr}}
     .card{{padding:22px 20px}}
@@ -595,19 +619,17 @@ def build_html(member_name: str, member_email: str, brief: dict, member_context:
       <div style="color:var(--ink-3);font-weight:700">Stack</div>
       <div style="color:var(--ink)">{member_context}</div>
     </div>
-    <div class="btn-row" style="margin-top:22px">
-      <button class="btn btn-action">&#9881; Update my profile</button>
-      <button class="btn btn-ghost">&#9889; Run my brief now</button>
-    </div>
+    <div style="margin-top:18px;font-size:14px;color:var(--ink-3)">Your brief refreshes every weekday morning at 6am. Reply to your invite email to update your profile or add personal sources.</div>
   </div>
 
 </div>
 
-<div style="margin-top:0;padding:24px 28px;text-align:center;font-size:13px;color:var(--ink-faint);border-top:1px solid var(--line-soft);max-width:920px;margin-left:auto;margin-right:auto">
+<div style="padding:24px 28px;text-align:center;font-size:13px;color:var(--ink-faint);border-top:1px solid var(--line-soft);max-width:920px;margin:0 auto">
   AI Collective Daily Brief for {member_name} &middot; {date_str} &middot; <a href="https://collective.bnsn.ai" style="color:var(--ink-faint)">collective.bnsn.ai</a>
 </div>
 
 <script>
+  function togglePanel(id){{var el=document.getElementById(id);if(el)el.classList.toggle('open')}}
   function toggleSrc(btn){{var row=btn.parentElement;row.classList.toggle('muted');btn.innerText=row.classList.contains('muted')?'Muted':'Active'}}
 </script>
 

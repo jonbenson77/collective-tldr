@@ -83,7 +83,13 @@
   .src-badge{font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;white-space:nowrap}
   .src-badge.skip{background:var(--skip-soft);color:var(--skip)}
   .sources-box{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-card);padding:20px 24px;margin-top:32px}
-  footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--line-soft);text-align:center;font-size:13px;color:var(--ink-faint)}
+  .panel{overflow:hidden;max-height:0;transition:max-height .4s ease}
+  .panel.open{max-height:9999px}
+  .panel-inner{padding:22px 0 8px;border-top:1px solid var(--line);margin-top:18px}
+  .panel-inner h5{font-size:16px;font-weight:700;color:var(--ink);margin:20px 0 8px}
+  .panel-inner h5:first-child{margin-top:0}
+  .panel-inner p,.panel-inner li{font-size:15px;color:var(--ink-2);line-height:1.65}
+  .panel-inner ul,.panel-inner ol{padding-left:20px;margin:6px 0 14px}
   @media(max-width:640px){
     .status-strip{grid-template-columns:1fr}
     .card{padding:22px 20px}
@@ -98,22 +104,22 @@
 
   <span class="kicker">AI Collective . Daily Brief</span>
   <h1>Good morning, Ben.</h1>
-  <p class="meta">Tuesday, May 5, 2026 . 4 items to focus on . synthesized from 10 channels</p>
+  <p class="meta">Tuesday, May 5, 2026 . 5 items to focus on . synthesized from 10 channels</p>
 
   <div class="status-strip">
     <div class="status-card">
       <div class="label">Stories to focus on</div>
-      <div class="value">4</div>
+      <div class="value">5</div>
       <div class="note">1 skipped . 8 total</div>
     </div>
     <div class="status-card">
       <div class="label">One thing today</div>
-      <div class="value" style="font-size:18px;line-height:1.3">Build 7 Live Business Dashboards in Claude This We</div>
-      <div class="note">Replace your morning app-switching routine with one AI-powered command center</div>
+      <div class="value" style="font-size:18px;line-height:1.3">Build a High-Converting Lead-Gen Landing Page With</div>
+      <div class="note">A 7-year, $1.2M conversion framework condensed into a single Claude Code build session</div>
     </div>
     <div class="status-card">
       <div class="label">Time to read</div>
-      <div class="value">4 min</div>
+      <div class="value">6 min</div>
       <div class="note">Saves you ~2-3 hours of YouTube</div>
     </div>
   </div>
@@ -121,11 +127,11 @@
   <!-- ONE THING TODAY -->
   <div class="onething">
     <div class="onething-kicker">If you only do one thing today</div>
-    <h3>Build 7 Live Business Dashboards in Claude This Week</h3>
-    <p>Eliot Prince spent a weekend building seven live Claude Cowork dashboards that pull real-time data for competitors, sales pipeline, financials, SEO, support, and more. Each dashboard uses Claude connectors to surface AI-powered insights without opening separate tools. For your work in email marketing and CRM, the Sales Pulse and Daily Command Center dashboards are immediately applicable: pipeline visibility, deals to follow up today, and outstanding invoices in a single view. Grab the prompts free from his AI Recipe Vault and start with the Sales Pulse or Daily Command Center today.</p>
+    <h3>Build a High-Converting Lead-Gen Landing Page With Claude Code This Weekend</h3>
+    <p>Jono walks through every element of a landing page that converted at 20 percent, which is 10x the global average, covering 14 must-have components including offer design, a 45-second founder video that lifts conversions 33 percent, video testimonials that dropped cost-per-lead from $200 to $30, and a speed-to-lead automation that calls new leads in under 60 seconds. He then shows how to build a Claude Code skill that auto-generates dynamic pages by city and service combination so you can scale without touching the builder again. The full stack includes PostHog split testing, Lighthouse 100 page speed, GitHub and Vercel deployment, and heatmaps. Start by watching the 8:22 copywriting section before you touch any code.</p>
     <div class="btn-row" style="margin-top:18px">
       <a class="btn btn-install" href="https://claude.ai" target="_blank">&#9889; Open Claude</a>
-      <a class="btn btn-ghost" href="https://www.youtube.com/watch?v=XStzxI1YUs4" target="_blank">&#9654; Eliot Prince walkthrough</a>
+      <a class="btn btn-ghost" href="https://www.youtube.com/watch?v=ru7fWKD4cyw" target="_blank">&#9654; Jono Catliff walkthrough</a>
     </div>
   </div>
 
@@ -134,79 +140,164 @@
 
   <div class="card" style="border-color:rgba(247,181,137,0.35);background:linear-gradient(180deg,rgba(247,181,137,0.06),var(--surface) 40%)">
     <div class="why-kicker" style="color:var(--accent-peach)">For you</div>
-    <div class="why-line">Your conversion funnel work maps directly to this: a 77-minute masterclass covering the exact 14-element landing page formula behind a 20% conversion rate and $1.2M in revenue.</div>
-    <div class="use-line">You can use Claude Code to build dynamic landing pages by city or service, add speed-to-lead automation that calls new leads in under 60 seconds, and run split tests with PostHog, all without writing code.</div>
+    <div class="why-line">Your conversion funnel work gets a concrete, battle-tested blueprint with real numbers behind every decision.</div>
+    <div class="use-line">Your next landing page build gets the 14-element checklist, the offer formula, and a Claude Code skill that generates city-by-service variants on autopilot.</div>
     <div class="creator">Jono Catliff . posted today</div>
-    <h3>Claude Code Landing Page Masterclass: 20% Conversion Rate and $1.2M Breakdown</h3>
-    <p class="what">Jono walks through every element of a high-converting lead-gen page built entirely in Claude Code, including offer design, video testimonials, dynamic city/service pages, Lighthouse 100 mobile speed, and a speed-to-lead automation that fires a call in under a minute. He also covers building a reusable Claude Code skill that generates new landing page variations on autopilot and deploying live via GitHub and Vercel.</p>
+    <h3>The $1.2M Landing Page System Built With Claude Code</h3>
+    <p class="what">Jono reverse-engineers the exact landing page system that generated $1.2M and achieved a 20 percent conversion rate at his DJ and events business. The video covers 14 specific page elements, a repeatable offer design formula, dynamic page generation by city and service using a Claude Code skill, PostHog A/B testing setup, and a speed-to-lead flow that triggers a phone call to new leads in under 60 seconds. He builds everything live using Claude Code with Vercel and GitHub for deployment, and shows Lighthouse 100 speed scores and heatmap integration.</p>
     <ul class="tldr">
-<li><strong>14-element formula:</strong> Specific page components proven to hit top 1% conversion rates, including one CTA, form on page, and a 45-second founder video that lifts conversions 33%</li>
-<li><strong>Dynamic pages:</strong> Claude Code skill generates pages per city and service combination automatically, scaling lead gen without manual effort</li>
-<li><strong>Speed-to-lead:</strong> Automation calls new leads in under 60 seconds, a direct workflow you can wire into your existing CRM setup</li>
-<li><strong>Split testing:</strong> PostHog integration lets you run data-driven A/B tests directly on the pages Claude Code builds</li>
+<li><strong>20% Conversion Rate::</strong> Achieved by combining specific copy rules, one CTA, no nav bar, and a founder video above the fold</li>
+<li><strong>Speed-to-Lead::</strong> Automation calls new leads in under 60 seconds using a trigger connected to the form submission</li>
+<li><strong>Dynamic Pages::</strong> Claude Code skill generates unique landing pages per city and service combination from a single prompt</li>
+<li><strong>PostHog Split Testing::</strong> Free tool wired into the page to run data-driven A/B tests without opinion-based guessing</li>
     </ul>
     <div class="btn-row-label">Consume</div>
     <div class="btn-row">
       <a class="btn btn-primary" href="https://www.youtube.com/watch?v=ru7fWKD4cyw" target="_blank">&#9654; Watch Jono Catliff (77 min)</a>
+      <button class="btn btn-ghost" onclick="togglePanel('hot-0')">&#128218; Read the details</button>
+    </div>
+    <div class="btn-row-label">Get it</div><div class="btn-row"><a class="btn btn-install" href="https://www.skool.com/automatable-free/classroom/6ca29126?md=e272f0564ca74f929d2b51375c182d6f" target="_blank">&#9889; Get the Free Blueprint</a></div>
+    
+    <div class="panel" id="hot-0">
+      <div class="panel-inner">
+<h5>The 14 Elements Every High-Converting Page Needs</h5>
+<ul><li><strong>Kill the nav bar</strong> and use a single CTA throughout the page</li><li><strong>Form on the page</strong> above the fold, not behind a button click</li><li><strong>45-second founder video</strong> placed near the top. Jono reports a 33% conversion lift from this alone</li><li><strong>Video testimonials</strong> dropped his cost per lead from $200 to $30</li><li><strong>Case studies, brand logos, and trust stats</strong> in a dedicated social proof section</li><li><strong>Portfolio and FAQ</strong> sections to handle objections before the prospect leaves</li><li><strong>Click-to-call button</strong> on mobile</li><li><strong>Offer design formula</strong> built around risk reversal so the prospect has nothing to lose by contacting you</li><li><strong>Copywriting rule:</strong> benefits not features, less text is more, every line earns its place</li></ul>
+<h5>Building the Claude Code Skill for Dynamic Page Generation</h5>
+<p>At the 46:06 mark Jono builds a reusable Claude Code skill that accepts a city name and service type as inputs and outputs a fully structured landing page matching the 14-element template. Steps: (1) Set up Claude Code with the AntiGravity plugin for visual output. (2) Build your base page first in a single prompt. (3) Record the skill by having Claude Code document every decision it made into a CLAUDE.md file. (4) Run the skill with new city and service inputs to generate variants without rewriting copy. (5) Deploy each variant to Vercel via GitHub with a unique URL slug like /miami-wedding-dj. This means you can cover 50 location and service combinations in an afternoon without touching copy or design manually.</p>
+<h5>Speed-to-Lead Automation Under 60 Seconds</h5>
+<p>At 1:05:11, Jono wires up a form submission trigger that fires an outbound phone call to the lead within 60 seconds of them submitting. The stack uses a webhook from the landing page form, connected to an automation layer (he uses his existing n8n or Make setup), which triggers a VAPI or ElevenLabs voice agent to call the lead immediately. He cites research showing that calling within 5 minutes increases contact rates by 100x compared to calling within 30 minutes. For your CRM and funnel work, this is a direct plug-in to whatever form tool you are already running.</p>
+<h5>PostHog Split Testing Setup</h5>
+<p>Jono spends from 48:04 to 1:05:11 on PostHog. It is free to start and installs via a single script tag. You create feature flags inside PostHog to serve two page variants to 50/50 traffic splits. He tests one variable at a time: headline copy, CTA button color, form placement. PostHog also provides heatmaps so you can see exactly where visitors stop scrolling. He emphasizes never making design decisions based on opinion when PostHog data is available within days of launch.</p>
+      </div>
     </div>
     <div class="verify-note">Jono Catliff YouTube channel, uploaded May 2026</div>
+  </div>
+
+  <div class="card" style="border-color:rgba(247,181,137,0.35);background:linear-gradient(180deg,rgba(247,181,137,0.06),var(--surface) 40%)">
+    <div class="why-kicker" style="color:var(--accent-peach)">For you</div>
+    <div class="why-line">Your business operations work gets seven ready-to-run live dashboards that replace the six-tool morning routine with one Claude Cowork screen.</div>
+    <div class="use-line">Your CRM and pipeline visibility gets an immediate upgrade with the Sales Pulse and Daily Command Center dashboards you can prompt into existence today.</div>
+    <div class="creator">Eliot Prince . posted today</div>
+    <h3>7 Claude Live Artifact Dashboards for Business Operations</h3>
+    <p class="what">Eliot built seven live dashboards inside Claude Cowork over a weekend, each pulling real data and surfacing AI-powered insights. The seven cover competitors, daily priorities, financial position, SEO performance, customer support flags, sales pipeline, and YouTube metrics. Every prompt is available free in his AI Recipe Vault. None of them require developer skills, only Claude Cowork, the right connectors, and the prompts.</p>
+    <ul class="tldr">
+<li><strong>Daily Command Center::</strong> One screen showing everything that needs your attention before you open any other app</li>
+<li><strong>Sales Pulse::</strong> Live pipeline view showing calls booked, revenue, and the specific deals to follow up on today</li>
+<li><strong>Competitor Move Tracker::</strong> Monitors competitor hiring, launches, and expansions in real time</li>
+<li><strong>Support Pulse::</strong> Flags urgent customer issues automatically so nothing critical is missed while you are heads-down</li>
+    </ul>
+    <div class="btn-row-label">Consume</div>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="https://www.youtube.com/watch?v=XStzxI1YUs4" target="_blank">&#9654; Watch Eliot Prince (18 min)</a>
+      <button class="btn btn-ghost" onclick="togglePanel('hot-1')">&#128218; Read the details</button>
+    </div>
+    <div class="btn-row-label">Get it</div><div class="btn-row"><a class="btn btn-install" href="https://eliotprince.com/ai-recipe-vault" target="_blank">&#9889; Get the Free Prompt Vault</a></div>
+    
+    <div class="panel" id="hot-1">
+      <div class="panel-inner">
+<h5>The Seven Dashboards and What Each One Does</h5>
+<ul><li><strong>Competitor Move Tracker:</strong> Pulls hiring posts, product launches, and geographic expansion signals from competitors in real time</li><li><strong>Daily Command Center:</strong> Aggregates your highest-priority tasks and decisions into one screen before you touch any other tool</li><li><strong>Daily Financial Position Dashboard:</strong> Shows money in, money out, outstanding invoices, and which receivables to chase today</li><li><strong>SEO Pulse:</strong> Surfaces clicks, impressions, top pages, and week-over-week shifts without opening Google Search Console</li><li><strong>Support Pulse:</strong> Scans incoming support tickets and flags anything urgent so issues do not escalate silently</li><li><strong>Sales Pulse:</strong> Displays pipeline value, booked calls, revenue, and a prioritized follow-up list for today</li><li><strong>YouTube Morning Dashboard:</strong> All channel metrics live before you open YouTube Studio</li></ul>
+<h5>How to Build These in Claude Cowork</h5>
+<p>Each dashboard is a Claude Live Artifact, meaning it renders as a live interactive interface inside the Claude Cowork window rather than a static text response. To build one: (1) Open Claude Cowork and start a new project. (2) Connect the relevant data connector for the dashboard you want. For Sales Pulse this would be your CRM connector. For SEO Pulse it would be your Google Search Console connector via Zapier MCP or a direct integration. (3) Paste the corresponding prompt from the AI Recipe Vault and add your specific context. (4) Claude generates a live artifact that auto-refreshes when you reopen it. Eliot notes the prompts in the Vault are starting points and benefit from adding your own business context before running them.</p>
+      </div>
+    </div>
+    <div class="verify-note">Eliot Prince YouTube channel, uploaded May 2026</div>
   </div>
 
   <!-- IMPLEMENT NOW -->
   <h2>What you should do today</h2>
 
-  <div class="card">
-    <div class="why-kicker">For you</div>
-    <div class="why-line">Your ad and email creative production can scale to hundreds of variations per week by connecting Higgsfield to Claude Code via MCP.</div>
-    <div class="use-line">You can set Claude Code to run creative research, generate product ad variations, and log every output to a Google Sheet tracker automatically while you focus on other work.</div>
+  <div class="card" >
+    <div class="why-kicker" >For you</div>
+    <div class="why-line">Your lead capture and booking flows can be automated end-to-end with a voice agent that qualifies and books calls without any manual follow-up.</div>
+    <div class="use-line">Your conversion funnel gets a voice agent layer that captures website leads and books them directly into cal.com by describing the behavior in plain English to Claude Code.</div>
     <div class="creator">Nate Herk</div>
-    <h3>Connect Higgsfield to Claude Code for Automated Ad Creative at Scale</h3>
-    <p class="what">Higgsfield connects to Claude and Claude Code through an MCP, giving you access to AI image and video generation directly inside your coding workflow. Nate builds a full pipeline: market research, brand creation, product photo generation, ad variation output, and a Google Sheet tracker, all running on scheduled routines without manual input.</p>
+    <h3>Build a Lead-Capture Voice Agent With Claude Code and ElevenLabs</h3>
+    <p class="what">Nate builds a fully working website voice agent using Claude Code and ElevenLabs that captures visitor information and books discovery calls through cal.com, all without touching the ElevenLabs dashboard or writing API code manually. He describes the agent behavior in plain English to Claude Code in Plan Mode, hits bugs including a timezone error, debugs them by describing the problem back to Claude Code, and gets to a live booking demo. The video covers three deployment options, API key setup, security considerations, and a cost breakdown.</p>
     <ul class="tldr">
-<li><strong>MCP connection:</strong> Higgsfield plugs into Claude Code via MCP so image and video generation happens inside your existing workflow without switching tools</li>
-<li><strong>Google Sheet tracker:</strong> Every generated creative output is automatically logged with metadata so you have a full production record</li>
-<li><strong>Reusable skills:</strong> Build once, reuse for consistent brand-aligned ad variations across hundreds of outputs per week</li>
-<li><strong>Routines:</strong> Scheduled automations run the full creative pipeline overnight so output compounds without your time</li>
-    </ul>
-    <div class="btn-row-label">Consume</div>
-    <div class="btn-row">
-      <a class="btn btn-primary" href="https://www.youtube.com/watch?v=xn6Z5PYyAIE" target="_blank">&#9654; Watch Nate Herk (35 min)</a>
-    </div>
-  </div>
-  <div class="card">
-    <div class="why-kicker">For you</div>
-    <div class="why-line">Your Claude Code and Cursor workflows would immediately benefit from a persistent memory layer that carries context across sessions and platforms without re-explaining your projects each time.</div>
-    <div class="use-line">You can build a three-level memory system using Obsidian for mid-term context and Pinecone for long-term vector search, so Claude always has relevant project history when you open a new session.</div>
-    <div class="creator">Jack Roberts</div>
-    <h3>Three-Level Claude Memory System Using Obsidian and Pinecone</h3>
-    <p class="what">Jack breaks down a memory architecture tested over a year: short-term context in Claude projects, mid-term in Obsidian markdown files, and long-term semantic search via Pinecone. The system eliminates context-switching friction and keeps your AI tools aware of ongoing work without manual re-briefing.</p>
-    <ul class="tldr">
-<li><strong>Level 1 short-term:</strong> Claude project files hold active session context for current tasks</li>
-<li><strong>Level 2 mid-term:</strong> Obsidian markdown stores project summaries and decisions Claude can reference across days</li>
-<li><strong>Level 3 long-term:</strong> Pinecone vector search retrieves relevant history semantically, not just by keyword</li>
-    </ul>
-    <div class="btn-row-label">Consume</div>
-    <div class="btn-row">
-      <a class="btn btn-primary" href="https://www.youtube.com/watch?v=YPup1cE4cAQ" target="_blank">&#9654; Watch Jack Roberts (17 min)</a>
-    </div>
-  </div>
-  <div class="card">
-    <div class="why-kicker">For you</div>
-    <div class="why-line">Your lead capture and CRM workflows can be extended with a voice agent that books discovery calls directly into cal.com, built by describing what you want to Claude Code in plain English.</div>
-    <div class="use-line">You can build and deploy a working ElevenLabs voice agent for a website in one session using Claude Code, with lead capture and calendar booking wired up without manually touching API docs.</div>
-    <div class="creator">Nate Herk</div>
-    <h3>Build a Lead-Capture Voice Agent with ElevenLabs and Claude Code</h3>
-    <p class="what">Nate builds a full ElevenLabs voice agent that captures leads and books discovery calls via cal.com, using Claude Code's plan mode to write and debug the entire integration by describing it in plain English. He covers three deployment options, timezone bug debugging, and security and cost considerations for production use.</p>
-    <ul class="tldr">
-<li><strong>Plan mode build:</strong> Claude Code generates the full voice agent architecture from a plain English description, no manual API wiring required</li>
-<li><strong>cal.com integration:</strong> Voice agent books discovery calls directly into your calendar during the conversation</li>
-<li><strong>Debugging workflow:</strong> Nate shows how to fix real bugs like timezone errors without reading docs, useful for your own Claude Code projects</li>
-<li><strong>Cost and security:</strong> Video covers API key handling and estimated running costs before going live</li>
+<li><strong>Plan Mode Build::</strong> Describe the full agent behavior in one prompt before Claude Code writes any code, reducing revision loops</li>
+<li><strong>Timezone Bug::</strong> A common ElevenLabs and cal.com integration issue caught during testing and fixed by describing the symptom to Claude Code</li>
+<li><strong>Three Deploy Options::</strong> Embed on existing site, standalone hosted page, or iFrame widget</li>
+<li><strong>Cost::</strong> ElevenLabs voice agent costs are per minute of conversation, Nate gives real usage numbers in the final section</li>
     </ul>
     <div class="btn-row-label">Consume</div>
     <div class="btn-row">
       <a class="btn btn-primary" href="https://www.youtube.com/watch?v=-cdexJWN8YA" target="_blank">&#9654; Watch Nate Herk (32 min)</a>
+      <button class="btn btn-ghost" onclick="togglePanel('impl-0')">&#128218; Read the details</button>
     </div>
+    <div class="btn-row-label">Get it</div><div class="btn-row"><a class="btn btn-install" href="https://elevenlabs.io/agents?utm_source=youtube&utm_medium=influencer&utm_campaign=influencer_-_nate_herk&utm_content=build_voice_agents_with_claude_code" target="_blank">&#9889; Open ElevenLabs Agents</a></div>
+    
+    <div class="panel" id="impl-0">
+      <div class="panel-inner">
+<h5>How to Build This Step by Step</h5>
+<ol><li>Open Claude Code and switch to Plan Mode before writing any code</li><li>Describe the full agent in plain English: what it says on greeting, what information it collects (name, email, goal), and that it should book a call via cal.com at the end</li><li>Review the plan Claude Code outputs and approve it before it writes a single line</li><li>Add your ElevenLabs API key and cal.com API key to the environment file as Claude Code instructs</li><li>Run a first test and listen for errors. Nate caught a timezone mismatch where cal.com was returning UTC but ElevenLabs was displaying it differently to the caller</li><li>Describe the bug in plain English back to Claude Code and let it fix the integration without you reading docs</li><li>Deploy using your preferred option: embed script, hosted page, or iFrame</li></ol>
+<h5>Security and Cost Considerations</h5>
+<p>Nate covers both at 29:14. On security: API keys must sit in environment variables server-side, never in client-facing code. If you deploy as a static page with an exposed key, anyone can run up your ElevenLabs bill. On cost: ElevenLabs charges per minute of voice conversation. For a lead capture agent averaging 3 to 5 minutes per call, costs at moderate traffic volumes are low enough that one booked call covers hundreds of conversations. He recommends setting a usage cap in your ElevenLabs dashboard while testing.</p>
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="card" >
+    <div class="why-kicker" >For you</div>
+    <div class="why-line">Your Claude Code and Cursor workflows stop losing context between sessions once you set up the three-level memory system that persists everything across tools.</div>
+    <div class="use-line">Your automation and CRM projects get a persistent AI brain so Claude remembers your business rules, past decisions, and project context without you re-explaining every session.</div>
+    <div class="creator">Jack Roberts</div>
+    <h3>Set Up a Three-Level Claude Memory System That Works Across All AI Tools</h3>
+    <p class="what">Jack walks through a tiered memory architecture he spent over a year testing, covering three levels of memory: short-term using Claude project files and CLAUDE.md, mid-term using Obsidian as a structured knowledge base, and long-term using Pinecone vector search for semantic retrieval across everything. He compares Pinecone versus Obsidian for different use cases and gives the exact folder structure and setup steps. The system works across Claude, Cursor, ChatGPT, and NotebookLM.</p>
+    <ul class="tldr">
+<li><strong>Level 1 Short-Term::</strong> CLAUDE.md and project context files inside Claude for session-level memory</li>
+<li><strong>Level 2 Mid-Term::</strong> Obsidian vault organized by project and domain for persistent reference across weeks</li>
+<li><strong>Level 3 Long-Term::</strong> Pinecone vector database for semantic search across all past context when you have hundreds of files</li>
+<li><strong>Pinecone vs Obsidian::</strong> Obsidian is simpler and sufficient for most users; Pinecone adds value only when your knowledge base exceeds easy manual navigation</li>
+    </ul>
+    <div class="btn-row-label">Consume</div>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="https://www.youtube.com/watch?v=YPup1cE4cAQ" target="_blank">&#9654; Watch Jack Roberts (17 min)</a>
+      <button class="btn btn-ghost" onclick="togglePanel('impl-1')">&#128218; Read the details</button>
+    </div>
+    <div class="btn-row-label">Get it</div><div class="btn-row"><a class="btn btn-install" href="https://bit.ly/3PATPoL" target="_blank">&#9889; Get Free Resources From Video</a></div>
+    
+    <div class="panel" id="impl-1">
+      <div class="panel-inner">
+<h5>Three-Level Setup Walkthrough</h5>
+<ul><li><strong>Level 1 (Short-term):</strong> Create a CLAUDE.md file at the root of every project folder. Write in your business context, constraints, tone rules, and recurring preferences. Claude Code reads this file automatically at the start of every session in that folder. For Claude Cowork, use the Project Instructions field to store the same information.</li><li><strong>Level 2 (Mid-term):</strong> Set up an Obsidian vault with folders per domain: clients, automations, copy rules, CRM notes, funnel specs. Link notes between projects. When you start a new Claude session, copy the relevant Obsidian note content into the conversation or reference the file path if using Claude Code with file access.</li><li><strong>Level 3 (Long-term):</strong> Connect Pinecone to store embeddings of all your Obsidian notes and past project outputs. Use a Firecrawl or script-based ingestion to keep Pinecone updated. Query it via Claude Code when you need to pull relevant past context semantically rather than by exact file name.</li></ul>
+<h5>Why Most Memory Systems Fail and How This One Avoids It</h5>
+<p>Jack opens at 0:00 by identifying the core failure mode: most people store context in one place but only access it from one tool, so context switching between Claude, Cursor, and ChatGPT means starting over every time. His fix is to treat Obsidian as the single source of truth that all tools read from, either by manual paste for simpler sessions or via Pinecone embeddings for automated retrieval. The second failure mode is over-engineering Level 3 before you need it. His recommendation is to start with just CLAUDE.md for one project this week, add Obsidian after you hit your first context loss, and only add Pinecone once your vault exceeds around 50 notes.</p>
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="card" >
+    <div class="why-kicker" >For you</div>
+    <div class="why-line">Your Claude Code setup gets six proven, sellable skill types that cover the highest-value automation use cases most businesses keep paying to rebuild.</div>
+    <div class="use-line">Your workflow automation toolkit gets the exact six Claude Code skills worth installing and learning first, with the install commands ready to run.</div>
+    <div class="creator">Nate Herk</div>
+    <h3>The 6 Claude Code Skills Worth Building First (After 400 Hours of Testing)</h3>
+    <p class="what">Nate distills 400 hours of Claude Code usage into the six skill types that businesses consistently pay for and that deliver reliable, repeatable outputs. He gives the install command for each skill and explains what problem it solves. The video also covers how to position and sell these skills to clients, making it useful both for personal productivity and for anyone building an AI automation practice.</p>
+    <ul class="tldr">
+<li><strong>Skill Creator::</strong> Packages any Claude Code workflow into a reusable one-click skill so you never rebuild the same thing twice</li>
+<li><strong>Superpowers::</strong> A meta-skill that expands Claude Code's default capabilities across file types and integrations</li>
+<li><strong>Context Mode::</strong> Keeps project context loaded persistently so Claude Code does not lose state mid-session</li>
+<li><strong>Claude Mem::</strong> Cross-session memory layer that stores and recalls facts, preferences, and decisions automatically</li>
+    </ul>
+    <div class="btn-row-label">Consume</div>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="https://www.youtube.com/watch?v=eRS3CmvrOvA" target="_blank">&#9654; Watch Nate Herk (14 min)</a>
+      <button class="btn btn-ghost" onclick="togglePanel('impl-2')">&#128218; Read the details</button>
+    </div>
+    
+    
+    <div class="panel" id="impl-2">
+      <div class="panel-inner">
+<h5>The Six Skills and Their Install Commands</h5>
+<ul><li><strong>Skill Creator:</strong> <code>/plugin install skill-creator@claude-plugins-official</code> - Turns any workflow you run in Claude Code into a reusable skill file</li><li><strong>Superpowers:</strong> <code>/plugin install superpowers@claude-plugins-official</code> - Extends default capabilities including richer file handling and output formatting</li><li><strong>Get Shit Done:</strong> <code>npx get-shit-done-cc --claude --global</code> - Productivity-focused skill pack for task execution without excessive confirmation prompts</li><li><strong>Context Mode:</strong> <code>/plugin marketplace add mksglu/context-mode</code> then <code>/plugin install context-mode@context-mode</code> - Keeps your project context active across a long session</li><li><strong>Claude Mem:</strong> <code>/plugin marketplace add thedotmack/claude-mem</code> then <code>/plugin install claude-mem</code> - Persistent memory that stores and surfaces key facts automatically</li><li><strong>Frontend Design:</strong> <code>/plugin install frontend-design@claude-plugins-official</code> - Improves Claude Code output quality for UI and visual component generation</li></ul>
+<h5>Why These Six Specifically</h5>
+<p>Nate's framing is that these are the skills businesses keep paying to rebuild because they solve universal problems rather than niche ones. Skill Creator solves the repeatability problem: once you build a good workflow, you package it and reuse it instead of prompting from scratch. Context Mode and Claude Mem together solve the memory problem that Jack Roberts also covers in his video today, meaning the two approaches are complementary. Frontend Design is the one that makes visual outputs client-presentable without a designer. He notes at 11:52 that these six skills are also the easiest to demonstrate value with in a 15-minute client meeting because the output is immediately visible.</p>
+      </div>
+    </div>
+    
   </div>
 
   <!-- SAVE FOR LATER -->
@@ -215,19 +306,19 @@
 
       <div class="src-row">
         <span class="src-name">
-          <a href="https://www.youtube.com/watch?v=k8igQH7SLwI" target="_blank" style="color:var(--ink-2);text-decoration:none">Brock Mesarich - Higgsfield MCP for Claude Cowork: Image and Video Generation with 6 Free Skills</a>
+          <a href="https://www.youtube.com/watch?v=xn6Z5PYyAIE" target="_blank" style="color:var(--ink-2);text-decoration:none">Nate Herk - Higgsfield Plus Claude Code as a Full Creative Agency</a>
         </span>
         <span class="src-badge skip">Later</span>
       </div>
-      <div style="font-size:14px;color:var(--ink-3);margin:0 0 12px 0">This covers similar Higgsfield-plus-Claude territory as the Nate Herk video already in your action list, so worth watching after you have tested the core MCP setup.</div>
+      <div style="font-size:14px;color:var(--ink-3);margin:0 0 12px 0">Connecting Higgsfield to Claude Code via MCP to generate product photos, ad variations, and launch videos on a schedule is a strong capability to explore once your funnel and CRM foundations are in place.</div>
       <div class="src-row">
         <span class="src-name">
-          <a href="https://www.youtube.com/watch?v=nAfbaZysFuk" target="_blank" style="color:var(--ink-2);text-decoration:none">Jack Roberts - Replace PowerPoint With Claude Code Using 20 Universal Design Rules</a>
+          <a href="https://www.youtube.com/watch?v=nAfbaZysFuk" target="_blank" style="color:var(--ink-2);text-decoration:none">Jack Roberts - Replace PowerPoint With Claude Code and 20 Universal Design Rules</a>
         </span>
         <span class="src-badge skip">Later</span>
       </div>
-      <div style="font-size:14px;color:var(--ink-3);margin:0 0 12px 0">Useful for polished client-facing presentations but lower priority than the conversion, memory, and automation items this week.</div>
-    <div style="margin-top:14px;font-size:13px;color:var(--ink-faint)">Nate Herk's '6 Best Claude Code Skills' video was deprioritized because the core skill concepts are covered more concretely across the other videos already in the brief.</div>
+      <div style="font-size:14px;color:var(--ink-3);margin:0 0 12px 0">Building presentations as code with a reusable GitHub template is worth revisiting when you need to produce client-facing materials or internal reporting decks at scale.</div>
+    <div style="margin-top:14px;font-size:13px;color:var(--ink-faint)">Brock Mesarich's Claude Cowork image and video generation video covers the same Higgsfield MCP setup as the Nate Herk Higgsfield video and is saved rather than duplicated in the brief.</div>
   </div>
 
   <!-- YOUR SOURCES -->
@@ -313,19 +404,17 @@
       <div style="color:var(--ink-3);font-weight:700">Stack</div>
       <div style="color:var(--ink)">Claude Code, Cursor. Focused on email marketing, conversion funnels, CRM, and business operations. Interested in automation, analytics, and AI tools that improve team workflows.</div>
     </div>
-    <div class="btn-row" style="margin-top:22px">
-      <button class="btn btn-action">&#9881; Update my profile</button>
-      <button class="btn btn-ghost">&#9889; Run my brief now</button>
-    </div>
+    <div style="margin-top:18px;font-size:14px;color:var(--ink-3)">Your brief refreshes every weekday morning at 6am. Reply to your invite email to update your profile or add personal sources.</div>
   </div>
 
 </div>
 
-<div style="margin-top:0;padding:24px 28px;text-align:center;font-size:13px;color:var(--ink-faint);border-top:1px solid var(--line-soft);max-width:920px;margin-left:auto;margin-right:auto">
+<div style="padding:24px 28px;text-align:center;font-size:13px;color:var(--ink-faint);border-top:1px solid var(--line-soft);max-width:920px;margin:0 auto">
   AI Collective Daily Brief for Ben Cope &middot; Tuesday, May 5, 2026 &middot; <a href="https://collective.bnsn.ai" style="color:var(--ink-faint)">collective.bnsn.ai</a>
 </div>
 
 <script>
+  function togglePanel(id){var el=document.getElementById(id);if(el)el.classList.toggle('open')}
   function toggleSrc(btn){var row=btn.parentElement;row.classList.toggle('muted');btn.innerText=row.classList.contains('muted')?'Muted':'Active'}
 </script>
 
