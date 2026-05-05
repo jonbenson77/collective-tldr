@@ -1,0 +1,46 @@
+name: Daily Brief
+
+on:
+  schedule:
+    # 6am CT = 11am UTC (UTC-5). Runs Mon-Fri.
+    - cron: '0 11 * * 1-5'
+  workflow_dispatch:
+    inputs:
+      member_email:
+        description: 'Run for one member only (leave blank for all)'
+        required: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install anthropic youtube-transcript-api yt-dlp
+
+      - name: Generate briefs
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          MEMBER_EMAIL: ${{ github.event.inputs.member_email }}
+        run: |
+          if [ -n "$MEMBER_EMAIL" ]; then
+            python generate-brief.py --name "$(python members.py name $MEMBER_EMAIL)" --email "$MEMBER_EMAIL"
+          else
+            python run-all.py
+          fi
+
+      - name: Commit and push
+        run: |
+          git config user.name "Isaac"
+          git config user.email "isaac@bnsn.ai"
+          git add m/
+          git diff --staged --quiet || git commit -m "Daily brief $(date +'%Y-%m-%d')"
+          git push
