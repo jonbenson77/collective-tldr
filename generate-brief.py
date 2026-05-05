@@ -180,20 +180,28 @@ def synthesize_brief(videos: list[dict], member_name: str, member_context: str) 
         )
     sources_text = "\n\n---\n\n".join(source_blocks)
 
-    member_info = f"Name: {member_name}\nContext: {member_context}"
+    member_info = f"Name: {member_name}\nProfile: {member_context}"
 
-    prompt = f"""You are writing the AI Collective Daily Brief for {first_name}.
+    prompt = f"""You are writing the AI Collective Daily Brief. The reader is {first_name}.
+
+CRITICAL RULE: Write everything in SECOND PERSON. You are talking TO {first_name}, not about them.
+- WRONG: "{first_name} can build a voice agent..."
+- RIGHT: "You can build a voice agent..."
+- WRONG: "{first_name}'s projects would benefit..."
+- RIGHT: "Your projects would benefit..."
+
+The "for_you" and "use_case" fields must address the reader as "you" / "your", never use their name.
 
 Today: {date_str}
 
-Member profile:
+Member profile (use for personalization context only - do NOT reference their employer or internal role):
 {member_info}
 
 Source videos from today's AI creator channels:
 
 {sources_text}
 
-Generate a JSON brief with this structure. Be specific and concrete - name exact features, real use cases, specific numbers. Personalize the "for_you" lines to {first_name}'s context. No em dashes (use plain dash or colon). No vague statements.
+Generate a JSON brief with this structure. Be specific and concrete - name exact features, real use cases, specific numbers. No em dashes (use plain dash or colon). No vague statements.
 
 {{
   "total_scanned": <total videos reviewed>,
@@ -204,23 +212,23 @@ Generate a JSON brief with this structure. Be specific and concrete - name exact
     "duration_min": <minutes>,
     "headline": "<compelling action headline - what to BUILD or DO today>",
     "subtitle": "<what it unlocks in one concrete line>",
-    "body": "<3-4 sentences. What it does. Why it matters to {first_name} specifically. What to do with it today.>",
-    "for_you": "<one sentence, specific to {first_name}'s role and tools>"
+    "body": "<3-4 sentences written in second person. What it is. Why it matters to you. What to do with it today.>",
+    "for_you": "<one sentence starting with 'You' or 'Your'>"
   }},
   "hot_items": [
     {{
       "channel": "<creator name>",
       "video_id": "<id>",
       "duration_min": <minutes>,
-      "for_you": "<one sentence why this matters to {first_name}>",
-      "use_case": "<one sentence: specific thing they can do with it>",
+      "for_you": "<one sentence starting with You/Your - why this matters>",
+      "use_case": "<one sentence starting with You/Your - specific thing to do>",
       "headline": "<article-style headline>",
-      "what": "<2-3 sentence explanation of what it actually is>",
+      "what": "<2-3 sentences written in second person>",
       "tldr": [
-        "<Bold term: specific point>",
-        "<Bold term: specific point>",
-        "<Bold term: specific point>",
-        "<Bold term: specific point>"
+        "**Bold term:** specific point",
+        "**Bold term:** specific point",
+        "**Bold term:** specific point",
+        "**Bold term:** specific point"
       ],
       "verify_note": "<source + upload date>"
     }}
@@ -230,14 +238,14 @@ Generate a JSON brief with this structure. Be specific and concrete - name exact
       "channel": "<creator name>",
       "video_id": "<id>",
       "duration_min": <minutes>,
-      "for_you": "<why this one matters>",
-      "use_case": "<specific use case>",
+      "for_you": "<one sentence starting with You/Your>",
+      "use_case": "<specific use case in second person>",
       "headline": "<headline>",
-      "what": "<2 sentence summary>",
+      "what": "<2 sentences in second person>",
       "tldr": [
-        "<Bold term: specific point>",
-        "<Bold term: specific point>",
-        "<Bold term: specific point>"
+        "**Bold term:** specific point",
+        "**Bold term:** specific point",
+        "**Bold term:** specific point"
       ]
     }}
   ],
@@ -246,21 +254,21 @@ Generate a JSON brief with this structure. Be specific and concrete - name exact
       "channel": "<creator name>",
       "video_id": "<id>",
       "headline": "<title>",
-      "why_later": "<one sentence why not today>"
+      "why_later": "<one sentence - why save for later not today>"
     }}
   ],
   "skipped_count": <number>,
-  "skipped_note": "<brief note on what was skipped>",
+  "skipped_note": "<what was skipped and why in one sentence>",
   "read_time_min": <estimated read time>
 }}
 
 Rules:
-- hot_items: 1-2 max (the freshest, most urgent)
+- hot_items: 1-2 max (freshest, most urgent)
 - implement_items: 2-3 items
 - save_items: 1-2 items
-- tldr bullets must start with **Bold phrase** colon then detail
-- be specific about tools, features, and outcomes
-- personalize every "for_you" line to {first_name}'s actual role"""
+- tldr bullets: **Bold phrase:** then detail. No em dashes.
+- Every "for_you" and "use_case" field starts with "You" or "Your" - never the member's name
+- Specific tools, features, outcomes - not vague generalities"""
 
     response = client.messages.create(
         model="claude-sonnet-4-6",
@@ -274,7 +282,7 @@ Rules:
     return json.loads(text[start:end])
 
 
-def build_html(member_name: str, member_email: str, brief: dict) -> str:
+def build_html(member_name: str, member_email: str, brief: dict, member_context: str = "") -> str:
     first_name = member_name.split()[0]
     today = datetime.now()
     date_str = today.strftime("%A, %B %-d, %Y")
@@ -504,11 +512,104 @@ def build_html(member_name: str, member_email: str, brief: dict) -> str:
     <div style="margin-top:14px;font-size:13px;color:var(--ink-faint)">{brief.get('skipped_note','')}</div>
   </div>
 
+  <!-- YOUR SOURCES -->
+  <h2>Your sources</h2>
+  <div style="background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:26px 30px;margin-bottom:20px">
+
+    <style>
+      .src-list{{display:grid;grid-template-columns:1fr 1fr;gap:8px 16px;margin:10px 0 18px}}
+      .src-row-s{{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--bg);border:1px solid var(--line);border-radius:6px;font-size:14px;color:var(--ink-2)}}
+      .src-row-s.muted{{opacity:.45}}
+      .src-row-s.muted .src-name{{text-decoration:line-through}}
+      .src-toggle{{font-size:11px;padding:4px 9px;background:var(--green-soft);color:var(--green);border:1px solid rgba(111,207,151,0.35);border-radius:4px;cursor:pointer;font-weight:700;letter-spacing:.04em}}
+      .src-row-s.muted .src-toggle{{background:var(--surface-3);color:var(--ink-3);border-color:var(--line-strong)}}
+      .src-toggle:hover{{filter:brightness(1.15)}}
+      .src-section-label{{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin:22px 0 10px}}
+      .src-section-label:first-child{{margin-top:0}}
+      .install-meter{{display:flex;gap:12px;margin-top:14px;padding:12px 14px;background:var(--bg);border-radius:7px;border:1px solid var(--line-strong);font-size:13px;color:var(--ink-2);align-items:center}}
+      .install-meter .bar{{flex:1;height:6px;background:var(--surface-3);border-radius:999px;overflow:hidden}}
+      .install-meter .bar .fill{{height:100%;background:linear-gradient(90deg,var(--green),var(--accent-peach));width:0%}}
+      .install-meter .count{{font-weight:700;color:var(--ink);min-width:60px;text-align:right;font-family:var(--font-mono)}}
+    </style>
+
+    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px">
+      <div style="color:var(--ink);font-size:17px;font-weight:700">Shared pool (click to mute / unmute)</div>
+      <div style="color:var(--ink-3);font-size:13px">22 default sources</div>
+    </div>
+
+    <div class="src-section-label">Major LLM vendors (6)</div>
+    <div class="src-list">
+      <div class="src-row-s"><span class="src-name">anthropic.com/news</span><button class="src-toggle" onclick="toggleSrc(this)">Active</button></div>
+      <div class="src-row-s"><span class="src-name">openai.com/news</span><button class="src-toggle" onclick="toggleSrc(this)">Active</button></div>
+      <div class="src-row-s"><span class="src-name">x.ai/news (Grok)</span><button class="src-toggle" onclick="toggleSrc(this)">Active</button></div>
+      <div class="src-row-s"><span class="src-name">deepmind.google</span><button class="src-toggle" onclick="toggleSrc(this)">Active</button></div>
+      <div class="src-row-s"><span class="src-name">ai.meta.com/blog</span><button class="src-toggle" onclick="toggleSrc(this)">Active</button></div>
+      <div class="src-row-s"><span class="src-name">mistral.ai/news</span><button class="src-toggle" onclick="toggleSrc(this)">Active</button></div>
+    </div>
+
+    <div class="src-section-label">Creators (12)</div>
+    <div class="src-list">
+      <div class="src-row-s"><span class="src-name">@Itssssss_Jack (Jack Roberts)</span><button class="src-toggle" onclick="toggleSrc(this)">Active</button></div>
+      <div class="src-row-s"><span class="src-name">@nateherk (Nate Herk)</span><button class="src-toggle" onclick="toggleSrc(this)">Active</button></div>
+      <div class="src-row-s"><span class="src-name">@princeeliot (Eliot Prince)</span><button class="src-toggle" onclick="toggleSrc(this)">Active</button></div>
+      <div class="src-row-s"><span class="src-name">@jonocatliff (Jono Catliff)</span><button class="src-toggle" onclick="toggleSrc(this)">Active</button></div>
+      <div class="src-row-s"><span class="src-name">@BenAI92 (Ben AI)</span><button class="src-toggle" onclick="toggleSrc(this)">Active</button></div>
+      <div class="src-row-s"><span class="src-name">@BrockMesarich (Brock Mesarich)</span><button class="src-toggle" onclick="toggleSrc(this)">Active</button></div>
+      <div class="src-row-s"><span class="src-name">@Chase-H-AI (Chase AI)</span><button class="src-toggle" onclick="toggleSrc(this)">Active</button></div>
+      <div class="src-row-s"><span class="src-name">Matthew Berman</span><button class="src-toggle" onclick="toggleSrc(this)">Active</button></div>
+      <div class="src-row-s"><span class="src-name">AI Explained (bycloud)</span><button class="src-toggle" onclick="toggleSrc(this)">Active</button></div>
+      <div class="src-row-s"><span class="src-name">Wes Roth</span><button class="src-toggle" onclick="toggleSrc(this)">Active</button></div>
+      <div class="src-row-s"><span class="src-name">David Ondrej</span><button class="src-toggle" onclick="toggleSrc(this)">Active</button></div>
+      <div class="src-row-s"><span class="src-name">Matt Wolfe / Future Tools</span><button class="src-toggle" onclick="toggleSrc(this)">Active</button></div>
+    </div>
+
+    <div class="src-section-label">Tools + newsletters (4)</div>
+    <div class="src-list">
+      <div class="src-row-s"><span class="src-name">cursor.com/changelog</span><button class="src-toggle" onclick="toggleSrc(this)">Active</button></div>
+      <div class="src-row-s"><span class="src-name">The Rundown AI</span><button class="src-toggle" onclick="toggleSrc(this)">Active</button></div>
+      <div class="src-row-s"><span class="src-name">Ben&#8217;s Bites</span><button class="src-toggle" onclick="toggleSrc(this)">Active</button></div>
+      <div class="src-row-s"><span class="src-name">TLDR AI</span><button class="src-toggle" onclick="toggleSrc(this)">Active</button></div>
+    </div>
+
+    <div style="margin:28px 0 6px;padding-top:22px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline">
+      <div style="color:var(--ink);font-size:17px;font-weight:700">Your personal additions</div>
+      <div style="color:var(--ink-3);font-size:13px">0 of 12 used &middot; paste any URL</div>
+    </div>
+
+    <div class="install-meter" style="margin-top:14px">
+      <span>Slots used</span>
+      <div class="bar"><div class="fill" style="width:0%"></div></div>
+      <span class="count">0 / 12</span>
+    </div>
+
+    <div style="margin-top:20px;display:grid;grid-template-columns:1fr auto;gap:12px">
+      <input type="text" placeholder="Paste any URL: YouTube channel, RSS, X profile, blog, newsletter..." style="background:var(--bg);border:1px solid var(--line-strong);border-radius:7px;padding:12px 16px;color:var(--ink);font-size:15px;font-family:var(--font-sans);outline:none">
+      <button class="btn btn-action" style="margin-top:0">+ Add source</button>
+    </div>
+  </div>
+
+  <!-- YOUR PROFILE -->
+  <h2>Your profile</h2>
+  <div style="background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:26px 30px;margin-bottom:20px">
+    <div style="display:grid;grid-template-columns:140px 1fr;gap:14px 20px;font-size:16px;line-height:1.55">
+      <div style="color:var(--ink-3);font-weight:700">Stack</div>
+      <div style="color:var(--ink)">{member_context}</div>
+    </div>
+    <div class="btn-row" style="margin-top:22px">
+      <button class="btn btn-action">&#9881; Update my profile</button>
+      <button class="btn btn-ghost">&#9889; Run my brief now</button>
+    </div>
+  </div>
+
 </div>
 
-<footer>
+<div style="margin-top:0;padding:24px 28px;text-align:center;font-size:13px;color:var(--ink-faint);border-top:1px solid var(--line-soft);max-width:920px;margin-left:auto;margin-right:auto">
   AI Collective Daily Brief for {member_name} &middot; {date_str} &middot; <a href="https://collective.bnsn.ai" style="color:var(--ink-faint)">collective.bnsn.ai</a>
-</footer>
+</div>
+
+<script>
+  function toggleSrc(btn){{var row=btn.parentElement;row.classList.toggle('muted');btn.innerText=row.classList.contains('muted')?'Muted':'Active'}}
+</script>
 
 </body>
 </html>"""
@@ -521,16 +622,17 @@ def main():
     parser.add_argument("--name", required=True, help="Member full name")
     parser.add_argument("--email", required=True, help="Member email (used for URL path)")
     parser.add_argument("--context", default="", help="Member context/profile notes")
-    parser.add_argument("--dry-run", action="store_true", help="Generate HTML but don't save")
+    parser.add_argument("--dry-run", action="store_true", help="Generate HTML but don't save to member path")
     args = parser.parse_args()
 
-    # Default contexts per known member
+    # Member profiles - describes each member's STACK and INTERESTS, not their internal role.
+    # These are what personalize the brief. For new members this comes from their onboarding form.
     if not args.context:
-        contexts = {
-            "jb@bnsn.ai": "Founder and CEO of BNSN.AI. Builds AI-powered copywriting tools. Uses Claude Code, Cursor, Obsidian, BNSN, NotebookLM, ElevenLabs daily. Runs AI Collective mastermind. Currently building: YouCloned course updates, AIC Skills Library, SLIDR (VSL editor), Customer Service dashboard.",
-            "bcope1@gmail.com": "CMO at BNSN.AI. Manages CRM, email marketing (Mailvio), and business operations. Technical - has code access. Focuses on conversion, customer journeys, and team tooling. Uses Claude Code and Cursor.",
+        profiles = {
+            "jb@bnsn.ai": "Claude Code, Cursor, Obsidian, BNSN, NotebookLM, ElevenLabs, YouCloned. Building AI tools and courses. Interested in agents, skills, MCP, video production, copy AI, automation.",
+            "bcope1@gmail.com": "Claude Code, Cursor. Focused on email marketing, conversion funnels, CRM, and business operations. Interested in automation, analytics, and AI tools that improve team workflows.",
         }
-        args.context = contexts.get(args.email, f"{args.name} is an AI Collective member using the YouCloned stack.")
+        args.context = profiles.get(args.email, "Claude Code, Cursor, Obsidian, BNSN, NotebookLM, ElevenLabs, YouCloned. Building with AI daily.")
 
     # Scan channels
     videos = scan_channels()
@@ -550,7 +652,7 @@ def main():
     brief = synthesize_brief(videos_with_transcripts, args.name, args.context)
 
     # Build HTML
-    html = build_html(args.name, args.email, brief)
+    html = build_html(args.name, args.email, brief, args.context)
 
     if args.dry_run:
         out_path = REPO_ROOT / "brief-preview.html"
