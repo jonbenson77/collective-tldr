@@ -1991,6 +1991,7 @@
   }
   .footer-links {
     display: flex;
+    flex-wrap: wrap;
     gap: 22px;
     list-style: none;
     padding: 0;
@@ -2027,6 +2028,24 @@
     .nav-inner { gap: 12px; }
   }
 </style>
+
+<script>
+(function(w){
+  w.fpr = w.fpr || function(){
+    w.fpr.q = w.fpr.q || [];
+    w.fpr.q[arguments[0] === 'set' ? 'unshift' : 'push'](arguments);
+  };
+})(window);
+
+fpr("init", { cid: "n7sl7h4o" });
+fpr("click");
+</script>
+<script>
+(function(w){w.fpr=w.fpr||function(){w.fpr.q=w.fpr.q||[];w.fpr.q[arguments[0]=='set'?'unshift':'push'](arguments);};})(window);
+fpr("init", {cid:"n7sl7h4o"});
+</script>
+<script src="https://cdn.firstpromoter.com/fpr.js" async></script>
+<script src="https://bnsn.ai/js/utm.js" defer></script>
 </head>
 <body>
 
@@ -2044,7 +2063,6 @@
       <li><a href="#faq">FAQ</a></li>
     </ul>
     <div class="nav-cta">
-      <a href="/members" target="_blank" class="btn btn-ghost btn-sm">Members Login</a>
       <a href="#pricing" class="btn btn-primary btn-sm">Join AI Collective</a>
     </div>
   </div>
@@ -2807,12 +2825,13 @@
 <!-- =============== FOOTER =============== -->
 <footer>
   <div class="container footer-inner">
-    <div class="footer-copy">&copy; BNSN.AI &middot; AI Collective</div>
+    <div class="footer-copy">&copy; BNSN.AI &middot; AI Collective and YouCloned are properties of BNSN LLC</div>
     <ul class="footer-links">
-      <li><a href="https://bnsn.ai">BNSN.AI</a></li>
-      <li><a href="https://youcloned.ai">YouCloned.AI</a></li>
-      <li><a href="#">Terms</a></li>
-      <li><a href="#">Privacy</a></li>
+      <li><a href="/privacy-policy/" target="_blank" rel="noopener noreferrer">Privacy Policy</a></li>
+      <li><a href="/cookies/" target="_blank" rel="noopener noreferrer">Cookies</a></li>
+      <li><a href="/terms-of-service/" target="_blank" rel="noopener noreferrer">Terms of Service</a></li>
+      <li><a href="/disclaimer/" target="_blank" rel="noopener noreferrer">Disclaimer</a></li>
+      <li><a href="/affiliates/" target="_blank" rel="noopener noreferrer">Affiliates</a></li>
     </ul>
   </div>
 </footer>
