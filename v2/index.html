@@ -3306,8 +3306,18 @@ fpr("init", {cid:"n7sl7h4o"});
   }
   if (sessionStorage.getItem(KEY) === "1") return;
 
+  // Arm exit-intent only AFTER the mouse has moved inside the viewport at
+  // least once. Without this, Firefox fires mouseleave on page load when the
+  // cursor is already over the browser chrome, which trips the popup on the
+  // refresh itself and then locks it out via sessionStorage. Real exit-intent
+  // requires the user to have actually been INSIDE the page first.
+  var mouseHasEntered = false;
+  document.addEventListener("mouseenter", function () { mouseHasEntered = true; });
+  document.addEventListener("mousemove", function (e) {
+    if (e.clientY > 5) mouseHasEntered = true;
+  });
   document.addEventListener("mouseleave", function (e) {
-    if (e.clientY <= 0) show();
+    if (mouseHasEntered && e.clientY <= 0) show();
   });
 
   var lastY = window.scrollY;
