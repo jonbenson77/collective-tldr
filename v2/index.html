@@ -3259,18 +3259,27 @@ fpr("init", {cid:"n7sl7h4o"});
 (function () {
   "use strict";
   var KEY = "ycDownsellShown";
-  if (sessionStorage.getItem(KEY) === "1") return;
+  var params = new URLSearchParams(window.location.search);
+  if (params.get("resetpop") === "1") sessionStorage.removeItem(KEY);
+  var forceShow = params.get("showpop") === "1";
 
   var overlay = document.getElementById("yc-downsell-overlay");
   var closeBtn = document.getElementById("yc-close-btn");
   var dismissLink = document.getElementById("yc-dismiss-link");
 
   function show() {
-    if (sessionStorage.getItem(KEY) === "1") return;
+    if (!forceShow && sessionStorage.getItem(KEY) === "1") return;
     sessionStorage.setItem(KEY, "1");
     overlay.classList.add("open");
     document.body.style.overflow = "hidden";
   }
+
+  if (forceShow) {
+    // Wait a tick so the DOM is fully painted before showing.
+    setTimeout(show, 100);
+    return;
+  }
+  if (sessionStorage.getItem(KEY) === "1") return;
   function hide() {
     overlay.classList.remove("open");
     document.body.style.overflow = "";
