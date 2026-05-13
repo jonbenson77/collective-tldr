@@ -3246,10 +3246,10 @@ fpr("init", {cid:"n7sl7h4o"});
   <div class="yc-popup">
     <button class="yc-close" type="button" aria-label="Close" id="yc-close-btn">&times;</button>
     <p class="yc-sub">You came here for the stack</p>
-    <h2 id="yc-downsell-headline">Wait... before you go.</h2>
-    <p>You don&rsquo;t have to join the Collective today to start running AI on autopilot. The same one-click install that wires my whole stack onto your machine, the same 9 video modules where I walk you through every tool I use... I&rsquo;ll hand you both for <strong>$197</strong>.</p>
-    <p>That&rsquo;s Obsidian, Cursor, Claude Code, Git, NotebookLM, and Supabase. Installed in 5 minutes. Set up the way I set mine up. Then 9 videos that show you how I actually use them.</p>
-    <p>No monthly. No live calls. Just the stack and the training, yours to keep.</p>
+    <h2 id="yc-downsell-headline">Wait! Before you go...</h2>
+    <p>You don&rsquo;t have to join the Collective today to start running AI on autopilot. Take the entire stack home for <strong>$197</strong>. The same one-click install that wires my AI setup onto your machine, plus the 9 video modules where I walk you through every tool I use.</p>
+    <p>Obsidian, Cursor, Claude Code, Git, NotebookLM, and Supabase. Installed in 5 minutes flat. Set up the way I set mine up. Then 9 videos that show you how I actually use them.</p>
+    <p>One-time payment. Lifetime access. Yours to keep.</p>
     <a class="yc-cta" id="yc-cta-link" href="https://checkout.bnsn.ai/youcloned.html?utm_source=collective&amp;utm_medium=exit-popup&amp;utm_campaign=youcloned_downsell&amp;utm_content=collective_exit&amp;fpr=n7sl7h4o">Get YouCloned for $197 &rarr;</a>
     <p class="yc-subcta"><a id="yc-dismiss-link">Or close this and I&rsquo;ll see you back here when you&rsquo;re ready.</a></p>
   </div>
@@ -3273,23 +3273,25 @@ fpr("init", {cid:"n7sl7h4o"});
     overlay.classList.add("open");
     document.body.style.overflow = "hidden";
   }
-
-  if (forceShow) {
-    // Wait a tick so the DOM is fully painted before showing.
-    setTimeout(show, 100);
-    return;
-  }
-  if (sessionStorage.getItem(KEY) === "1") return;
   function hide() {
     overlay.classList.remove("open");
     document.body.style.overflow = "";
   }
+
+  // Attach close handlers FIRST, before any early-return branches, so the X
+  // and dismiss link always work no matter how the popup was triggered.
   closeBtn.addEventListener("click", hide);
   dismissLink.addEventListener("click", hide);
   overlay.addEventListener("click", function (e) { if (e.target === overlay) hide(); });
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape" && overlay.classList.contains("open")) hide();
   });
+
+  if (forceShow) {
+    setTimeout(show, 100);
+    return;
+  }
+  if (sessionStorage.getItem(KEY) === "1") return;
 
   document.addEventListener("mouseleave", function (e) {
     if (e.clientY <= 0) show();
