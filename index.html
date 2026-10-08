@@ -1698,6 +1698,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
   .price-cta { width: 100%}
 
+
+  /* Bonus stack as plain copy (Jon, 2026-10-07): no box, each bonus explained under its name */
+  .price-card .bonus-stack, .bonus-stack.bonus-stack { background: none; border: 0; padding: 0; margin: 6px 0 24px; }
+  .bonus-item.bonus-explained { flex-wrap: wrap; align-items: baseline; row-gap: 4px; }
+  .bonus-item.bonus-explained .bonus-name { flex: 1 1 auto; font-weight: 700; }
+  .bonus-desc { flex: 1 1 100%; margin: 0 0 8px 22px; font-size: 14px; line-height: 1.55; color: var(--ink-2); }
   /* Quarterly bonus stack inside the featured price card */
   .bonus-stack {
     margin: 4px 0 24px;
@@ -1763,6 +1769,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     letter-spacing: -0.01em;
     white-space: nowrap;
   }
+  /* Jon, Oct 8: each value crossed out in light gray with "Free" beside it. */
+  .bonus-item .bonus-value { margin-left: auto; }
+  .bonus-value .was { color: var(--ink-3); font-weight: 500; text-decoration: line-through; text-decoration-color: var(--ink-3); text-decoration-thickness: 1px; opacity: .75; }
+  .bonus-value .now { color: var(--ink); font-weight: 700; margin-left: 4px; }
+  .upgrade-line { margin: 14px 0 0; font-size: 14px; line-height: 1.5; color: var(--ink-2); text-align: center; text-wrap: pretty; }
+  .upgrade-line a { color: inherit; font-weight: 700; text-decoration: underline; }
 
   /* ? tooltip */
   .bonus-tip {
@@ -2648,7 +2660,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="container">
     <div class="section-head reveal">
       <h2>Grab your spot before prices go up</h2>
-      <p>First 35 members get in at the founding rate. After that, monthly goes to $497 and quarterly goes with it. Prepay quarterly and get $1,693 in course bonuses on top of everything else...3 of Jon&rsquo;s flagship trainings, free.</p>
+      <p>First 35 members get in at the founding rate. After that, monthly goes to $497 and quarterly goes with it. Prepay quarterly and get $2,688 in bonuses on top of everything else...3 of Jon&rsquo;s flagship trainings, free.</p>
     </div>
 
     <div class="pricing-grid">
@@ -2671,11 +2683,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <div class="price-card price-card--featured">
-        <span class="price-badge">+ $1,693 In Bonuses</span>
+        <span class="price-badge">+ $2,688 In Bonuses</span>
         <div class="price-head">
           <span class="price-tier">Quarterly</span>
           <div class="price-amount"><span class="price-dollar">$</span>797<span class="price-cadence">/quarter</span></div>
-          <div class="price-sub">Works out to $266/mo. Rebills every 3 months. Includes $1,693 in course bonuses.</div>
+          <div class="price-sub">Works out to $266/mo. Rebills every 3 months. Includes $2,688 in bonuses.</div>
         </div>
         <ul class="price-features">
           <li>Everything in monthly</li>
@@ -2687,31 +2699,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="bonus-stack">
           <div class="bonus-stack-head">
             <span class="bonus-stack-label">Quarterly Bonus Stack</span>
-            <span class="bonus-stack-value">$1,693 value</span>
+            <span class="bonus-stack-value">$2,688 value</span>
           </div>
           <ul class="bonus-list">
-            <li class="bonus-item">
+            <li class="bonus-item bonus-explained">
               <span class="bonus-plus" aria-hidden="true">+</span>
               <span class="bonus-name">Conversion Optimization System</span>
-              <span class="bonus-tip" tabindex="0" data-tip="How to apply human edits to AI-written and human-written copy that double or triple your conversions. Jon&rsquo;s editing pass for turning decent drafts into money-making copy.">?</span>
-              <span class="bonus-value">$499</span>
+              <span class="bonus-value"><s class="was">$499</s> <span class="now">Free</span></span>
+              <p class="bonus-desc">Turn a page that almost converts into the best-converting version of itself. This is my complete editing framework with the 4 Pillars, the 4 U&rsquo;s and my Edicts. Then you watch me edit a $50M letter weakness by weakness from the headline all the way to the close, so you can run the same edit on your own&nbsp;pages.</p>
             </li>
-            <li class="bonus-item">
+            <li class="bonus-item bonus-explained">
               <span class="bonus-plus" aria-hidden="true">+</span>
               <span class="bonus-name">AI Funnel Profits</span>
-              <span class="bonus-tip" tabindex="0" data-tip="Use BNSN alongside existing proven sales funnels to create your own unique product in a single weekend. Model what&rsquo;s already winning, ship your own version fast.">?</span>
-              <span class="bonus-value">$197</span>
+              <span class="bonus-value"><s class="was">$197</s> <span class="now">Free</span></span>
+              <p class="bonus-desc">Build a funnel that sells in a single weekend with AI at your side. Fifteen modules take you step by step through the model offer, the ads, the opt-in, the sales VSL, the upsell, the checkout, the thank-you page and the emails that sell it. My ClickBank Mastery training and the course guide come with it, so you always know what to build&nbsp;next.</p>
             </li>
-            <li class="bonus-item">
+            <li class="bonus-item bonus-explained">
               <span class="bonus-plus" aria-hidden="true">+</span>
               <span class="bonus-name">VSL Mastery</span>
-              <span class="bonus-tip" tabindex="0" data-tip="Jon&rsquo;s master course on VSL writing from start to finish. Everything he knows about Video Sales Letters, taught by the guy who created the format. Learn to write VSLs that sell.">?</span>
-              <span class="bonus-value">$997</span>
+              <span class="bonus-value"><s class="was">$997</s> <span class="now">Free</span></span>
+              <p class="bonus-desc">Learn to write video sales letters from the guy who created the format. You get my scripts, my frameworks and my production templates. Then I take you through the psychology, the persuasion and the NLP behind every element that makes a buyer act, in 3 hours of training you&rsquo;ll come back to every time you write a&nbsp;VSL.</p>
+            </li>
+            <li class="bonus-item bonus-explained" id="v4-voice" style="scroll-margin-top: 160px;">
+              <span class="bonus-plus" aria-hidden="true">+</span>
+              <span class="bonus-name">Jon&rsquo;s ElevenLabs v4 Voice Hack</span>
+              <span class="bonus-value"><s class="was">$995</s> <span class="now">Free</span></span>
+              <p class="bonus-desc">Isaac and I analyzed hundreds of my videos to mimic my voice so closely that marketers who&rsquo;ve hired me for a living swear it&rsquo;s me reading. They tell me, &ldquo;I can&rsquo;t believe this isn&rsquo;t you.&rdquo; Now you can run the same voice skill on your own voice and get the most realistic read you&rsquo;ll ever hear out of ElevenLabs, ready for your videos and&nbsp;ads.</p>
             </li>
           </ul>
         </div>
 
         <a href="https://checkout.bnsn.ai/collective-quarterly.html" target="_blank" rel="noopener" class="btn btn-primary btn-lg price-cta">Start quarterly</a>
+        <p class="upgrade-line">Already a monthly member? <a href="https://checkout.bnsn.ai/aic-upgrade-request" target="_blank" rel="noopener noreferrer">Upgrade to quarterly here</a> and the unused part of your month comes off the&nbsp;price.</p>
       </div>
 
     </div>
