@@ -240,11 +240,43 @@
       <li><strong>Instagram carousel</strong> - generates the carousel and posts it. One of his hit 60K views.</li>
       <li>Plus: visual explainer, find-skills, Obsidian daily note, brand carousel.</li>
     </ul>
+    <div class="btn-row-label">Consume</div>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="https://www.youtube.com/watch?v=OK9c7UWl24M" target="_blank">▶ Watch Brock (24 min)</a>
+      <button class="btn btn-ghost" onclick="togglePanel('brock-details')">📖 Read the details</button>
+    </div>
+    <div class="panel" id="brock-details">
+      <div class="panel-inner">
+        <h5>The 9 skills, in plain English</h5>
+        <ul>
+          <li><strong>Dashboard Style.</strong> Locks every HTML report Claude writes you to your brand colors, fonts, and layout. Brock's looks like the Anthropic style. Yours becomes Barlow + gunmetal + orange. Every chart, table, or PDF Claude generates from now on inherits this without you re-prompting.</li>
+          <li><strong>Find Skills.</strong> Describes a problem in plain English and pulls a vetted skill from the public directory at skills.sh. Saves you hunting through GitHub.</li>
+          <li><strong>Visual Explainer.</strong> Turns any complex topic into a one-page HTML breakdown with 3 pillars, 6 steps, etc. Use it to map your own systems back to yourself or to teach members how Isaac works.</li>
+          <li><strong>Skills Dashboard.</strong> Auto-generates a master list of every skill you have installed, grouped by category, with a "use this skill by typing X" instruction next to each. Runs every Friday 9am on its own.</li>
+          <li><strong>Skills Audit.</strong> Scores your full skill stack 0-100. Flags duplicates and overlap. Tells you which to delete. This is the one you need most: your stack is approaching 50 and Brock's at 84% even with his discipline.</li>
+          <li><strong>PDF Guide Generator.</strong> One command, get a clean editorial-style PDF in the Naval Almanac look. Brock uses these as Instagram lead magnets ("comment SEO and I'll DM you the guide").</li>
+          <li><strong>End of Day Summary.</strong> Runs at 6pm. One-page report of what you and Claude shipped today, what's still open, top 3 priorities for tomorrow. Pairs with your Obsidian Daily Note workflow.</li>
+          <li><strong>Obsidian Daily Note.</strong> Writes the day's note inside your vault. Becomes Claude's persistent memory of what you're working on.</li>
+          <li><strong>Instagram Carousel.</strong> Researches a trending topic, writes the slides, generates the images via Google's nano-banana model, and posts to Instagram via a third-party scheduler called Blotato. One of his posts hit 60,000 views fully autopiloted.</li>
+        </ul>
+
+        <h5>The Skills Audit, since your stack is hitting 50</h5>
+        <p>Brock runs this every Friday 9:30am. It walks his entire skill folder, scores each skill against criteria he defined (clarity, single-purpose, no overlap, working triggers), and produces a 0-100 health score. His current score is 84. It told him "pick one workflow visualizer, you have 5." That kind of cleanup matters when you have 50+ skills, because every skill takes Claude tokens to read on every invocation. Run this once and you will probably free up 30-40% of your skills folder for things you actually use.</p>
+
+        <h5>The Instagram Carousel skill, since one of his hit 60K views</h5>
+        <p>This is the closest thing to a real autopilot money-maker in the bundle. The skill researches a trending claude/AI topic, writes 5-10 carousel slides matched to your reference style, calls Google AI Studio's image API to generate the slide art, then schedules to Instagram via the Blotato connector. Brock proved it: one carousel about Claude Design hit 60,000 views, 1,800 likes, 2,200 comments. Cost: free outside the Google API spend (cents per image) and a Blotato sub. For you: same skill, swap the topic from "Claude" to "BNSN copy tip of the week" and you have a passive Instagram engine pointed at AI Collective signups.</p>
+
+        <h5>How to install</h5>
+        <p>The 9 skills ship as one downloadable plugin. Link is in Brock's video description (the Skool community signup is free). Drop the plugin folder into Claude, restart, and all 9 are live. The Find Skills skill pulls from <code>skills.sh</code>, which is the public skill marketplace. Stick to skills uploaded by vetted companies (Vercel, Remotion, Microsoft) since random uploaders can ship malware.</p>
+
+        <h5>How to fork these for the AI Collective playbook library</h5>
+        <p>You wanted a playbook library by this weekend. Brock just gave you 3 done-for-you ones. Strip his branding, swap "Brock" for "you", point Dashboard Style at your colors, and you have: Playbook 1 (your branded dashboard), Playbook 2 (your skills audit so members don't drown in 50 skills), Playbook 3 (your Instagram carousel autopilot). Members install the plugin once, customize the 4 questions, run. That is your Skills space launch content shipped in an afternoon.</p>
+      </div>
+    </div>
     <div class="btn-row-label">Get it</div>
     <div class="btn-row">
       <a class="btn btn-install" href="https://skills.sh" target="_blank">⚡ Browse skills.sh</a>
       <a class="btn btn-install" href="https://www.youtube.com/watch?v=OK9c7UWl24M" target="_blank">⚡ Plugin link in video description</a>
-      <a class="btn btn-ghost" href="https://www.youtube.com/watch?v=OK9c7UWl24M" target="_blank">▶ Watch (24 min)</a>
     </div>
     <div class="verify-note">Plugin download is in Brock's video description (Skool community link). skills.sh is the public directory.</div>
   </div>
@@ -263,11 +295,35 @@
       <li><strong>Logged-in community engagement.</strong> Persists your Skool / Circle / Facebook login. Auto-likes posts from members who hit milestones, drops a personalized comment, replies to DMs. Same pattern works on every site you log into.</li>
       <li><strong>Important:</strong> use the Playwright CLI, not the Chrome extension version. The extension is slow and burns through your Claude credits 10x faster.</li>
     </ul>
+    <div class="btn-row-label">Consume</div>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="https://www.youtube.com/watch?v=J-6pnl5DQg8" target="_blank">▶ Watch Nate (16 min)</a>
+      <button class="btn btn-ghost" onclick="togglePanel('nate-details')">📖 Read the details</button>
+    </div>
+    <div class="panel" id="nate-details">
+      <div class="panel-inner">
+        <h5>Why Playwright CLI beats the Chrome DevTools MCP</h5>
+        <p>Both can let Claude drive a browser. The difference is token cost. The Chrome DevTools MCP loads a giant tool list into Claude's context every single message, so a long automation eats 10 times the tokens of the same job done with Playwright CLI. Nate switched after he checked his <code>/context</code> usage and saw the MCP eating his window. Playwright CLI ships as a one-time install (`npm install -g playwright && npx playwright install chromium`) and Claude just writes JavaScript files that drive Chrome. Same capability, fraction of the cost, faster runs.</p>
+
+        <h5>The 3 demos in business terms</h5>
+        <ul>
+          <li><strong>Auto bug check on a sales page.</strong> Nate had Claude build a 12-page lead form, then asked Claude to test its own form in a real Chrome window. Claude opened it, filled in every field, took screenshots at each step, found 2 bugs (Enter key didn't advance, review page never loaded), fixed the code, re-ran the test, passed. End to end with no human clicking.</li>
+          <li><strong>Lead scraper that doesn't get blocked.</strong> Asked it to find dentist offices in California with phone numbers. Google blocked the scraper. Claude noticed, switched to DuckDuckGo on its own, kept going, came back with 5 phone numbers. Real "agent that handles its own roadblocks" behavior.</li>
+          <li><strong>Community engagement bot that stays logged in.</strong> Persists your Skool / Circle / Facebook session via a saved Chrome profile. Nate's "AI Sage agent" runs every day in headless mode (no window pops up), navigates to the wins channel, sorts by newest, likes every member's post, replies to comments tagged at the bot, even posts birthday messages it learned about from prior context. Same exact pattern works on Circle and Facebook. The script gets smarter every run because Claude writes new helper scripts for new situations (it learned to vote on polls after a member asked it to).</li>
+        </ul>
+
+        <h5>How to install</h5>
+        <p>Two commands, then you're done:</p>
+        <p><code>npm install -g playwright</code> followed by <code>npx playwright install chromium</code>. Then in Claude Code, set "always run Playwright in headed mode" in your <code>CLAUDE.md</code> the first few times so you can watch it work. Switch to headless once it's reliable, so the windows don't pop up while you're working.</p>
+
+        <h5>For your Circle / Mailvio / Skool flows</h5>
+        <p>You have 3 immediate use cases. (1) AI Collective Circle: every morning, log in, like every new post in the Wins space, drop a personalized comment on member milestones, reply to DMs that match your voice. Lifts engagement without you in the seat. (2) Mailvio: pull historical campaign performance into a CSV (Mailvio's UI doesn't expose this cleanly via API for everything). (3) Skool / membership.io: persist your YouCloned admin login so Isaac can replace videos, update PDFs, and check member completions without you re-pasting credentials each time. Same pattern, 3 different tools.</p>
+      </div>
+    </div>
     <div class="btn-row-label">Get it</div>
     <div class="btn-row">
       <a class="btn btn-install" href="https://playwright.dev/docs/intro" target="_blank">⚡ Install Playwright (docs)</a>
       <button class="btn btn-install" onclick="copyText('cmd-pw',this)">⚡ Copy install command</button>
-      <a class="btn btn-ghost" href="https://www.youtube.com/watch?v=J-6pnl5DQg8" target="_blank">▶ Watch (16 min)</a>
     </div>
     <div class="cmd-block"><span id="cmd-pw">npm install -g playwright &amp;&amp; npx playwright install chromium</span><button class="copy-btn" onclick="copyText('cmd-pw',this)">Copy</button></div>
   </div>
@@ -286,10 +342,38 @@
       <li><strong>Cap iterations at 10.</strong> More than 15 makes results worse, not better.</li>
       <li><strong>Pair with Claude's scheduled tasks</strong> for a Mailvio subject-line optimizer that runs every Friday by itself.</li>
     </ul>
+    <div class="btn-row-label">Consume</div>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="https://www.youtube.com/watch?v=bc4NrE0cOE0" target="_blank">▶ Watch Ben AI (22 min)</a>
+      <button class="btn btn-ghost" onclick="togglePanel('karpathy-details')">📖 Read the details</button>
+    </div>
+    <div class="panel" id="karpathy-details">
+      <div class="panel-inner">
+        <h5>What "Auto Research" actually is</h5>
+        <p>Andrej Karpathy (one of the original OpenAI founders) published a research method that lets an AI grade its own work and improve itself in a loop. Ben took that method and packaged it as a Claude skill anyone can install. The way it works in plain English: you point the skill at one of your existing skills (say, your subject-line writer). You give it 4 to 5 rules the output must follow. The skill runs your subject-line writer 5 times, scores each output against your rules, writes a hypothesis like "if I add a 50-character cap to step 4, the score goes up", tries it, keeps the change if the score went up, throws it out if it didn't. Repeats until it hits 100% or runs out of iterations. You walk away. It comes back with a smarter version of your skill plus a dashboard showing every iteration.</p>
+
+        <h5>The 3-layer rule framework</h5>
+        <ul>
+          <li><strong>Layer 1: Hard rules.</strong> Things a script can check yes or no. "Hook must be under 136 characters." "Bullet points use hyphens not asterisks." "No em dashes." These are cheap to test, fast to fix.</li>
+          <li><strong>Layer 2: Pattern rules.</strong> Things an AI judge can spot. "Must follow PAS or AIDA framework." "Bold claims need a softener like 'I think' or 'I believe'." "Must include one personal story from my background file." These need a second AI agent to grade, but they capture your voice.</li>
+          <li><strong>Layer 3: Tone rules.</strong> The remaining subjective layer. Most copy work fits inside layers 1 and 2 if you articulate it well. The point: even creative skills like copywriting can be 80% expressed as true/false rules. The 20% you can't pin down is where you stay in the loop.</li>
+        </ul>
+
+        <h5>Real numbers from Ben's tests</h5>
+        <ul>
+          <li><strong>LinkedIn writer skill, 2 simple rules:</strong> baseline 80% pass rate. After 5 iterations: 100%. A 25% lift.</li>
+          <li><strong>LinkedIn writer skill, 4 harder rules</strong> (hook templates, nuance words, framework adherence, personal story): baseline 68%. After 10 iterations: 95%. A 27% lift.</li>
+          <li><strong>CLAUDE.md routing skill</strong> (which folder a memory goes in): 9.9% lift in 5 iterations.</li>
+          <li><strong>Hard cap iterations at 10.</strong> Ben confirmed past 15 iterations the skill gets WORSE not better. It overfits to its own feedback. 5 to 10 is the sweet spot.</li>
+        </ul>
+
+        <h5>Mailvio subject-line optimizer for you</h5>
+        <p>You already export Mailvio open-rate data weekly. Wire it like this: Friday 4pm, scheduled task runs Auto Research against your subject-line skill. Inputs are last week's top 5 and bottom 5 subjects with open rates. Rules are layer 1 (under 50 characters, no em dash, no spelled-out numbers) plus layer 2 (must use one of your hook templates, must reference a benefit not a feature). Sunday morning your subject-line skill is 5-15% sharper. It compounds. Same pattern works for VSL hooks, ad headlines, landing-page H1s, anywhere you have past performance data and a recurring write task. This is the closest thing to a copywriter that gets better while you sleep.</p>
+      </div>
+    </div>
     <div class="btn-row-label">Get it</div>
     <div class="btn-row">
       <a class="btn btn-install" href="https://www.youtube.com/watch?v=bc4NrE0cOE0" target="_blank">⚡ Plugin link in video description</a>
-      <a class="btn btn-ghost" href="https://www.youtube.com/watch?v=bc4NrE0cOE0" target="_blank">▶ Watch (22 min)</a>
     </div>
     <div class="verify-note">Ben distributes the auto-research plugin via his video description. Click "Watch" and grab the GitHub link from his pinned comment / description.</div>
   </div>
@@ -308,11 +392,30 @@
       <li><strong>Real demos:</strong> built a working SVG unicorn from one tweet image, generated game-ready sprites with image-gen 2.0, ran auto-tests with Playwright built-in.</li>
       <li><strong>Translation for you:</strong> if your front-end work on BNSN / Collective / YouCloned is the bottleneck, this might cut it in half. If it doesn't, Claude is still your tool and you've stopped wondering.</li>
     </ul>
+    <div class="btn-row-label">Consume</div>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="https://www.youtube.com/watch?v=T_xyhjfFCdY" target="_blank">▶ Watch Ondrej (12 min)</a>
+      <button class="btn btn-ghost" onclick="togglePanel('ondrej-details')">📖 Read the details</button>
+    </div>
+    <div class="panel" id="ondrej-details">
+      <div class="panel-inner">
+        <h5>Where GPT 5.5 lives and what it costs</h5>
+        <p>Live right now in ChatGPT Plus, Pro, Business, and Enterprise plans, plus inside Codex (OpenAI's coding tool). The API isn't out yet (Ondrej checked OpenRouter, not there) but OpenAI says "very soon." Per-1M-tokens output it's $30 vs Claude Opus 4.7's $25, so it costs slightly more per token. But OpenAI claims it uses fewer tokens to finish the same job, so end-to-end cost on a real coding task lands around 20% above the prior GPT 5.4 model. Free users do not get 5.5: minimum is the $20/mo Plus tier. The $200/mo Pro tier gets a special "5.5 Pro" version that thinks for up to 20 minutes per query.</p>
+
+        <h5>The Anthropic vs OpenAI political read</h5>
+        <p>OpenAI's launch blog took 2 visible jabs at Anthropic. First jab: "GPT 5.5 uses significantly fewer tokens to complete the same correct task" - a direct shot at Opus 4.7's new tokenizer that actually burns more tokens than 4.6 did. Second jab: "Larger more capable models are often slower to serve, but GPT 5.5 matches GPT 5.4 latency while performing higher" - flexing OpenAI's compute lead. The bigger context: Opus 4.7 just launched and users (Ondrej included) are saying it's the first Anthropic release in 2 years that feels worse than its predecessor. Ondrej still defaults to 4.6 fast in Claude Code. Anthropic locked in less compute under Dario Amodei's cautious approach, OpenAI built bigger data centers, and 2026 may be the year OpenAI pulls ahead. Worth keeping an eye on if you depend on Claude every day.</p>
+
+        <h5>What 5.5 Pro's 20-minute thinking does</h5>
+        <p>Pro tier gets access to a "5.5 Pro" variant that runs parallel test-time compute. In plain English: the model spawns multiple thinking branches in parallel, evaluates each, picks the best, then refines. Single queries take up to 20 minutes to answer. Built for one-shot work where quality matters more than speed: a complex SVG illustration, a full game prototype, a dense technical document. Ondrej showed the Pro version building a near-pixel-perfect SVG unicorn from a screenshot reference. The non-Pro version got 80% there. Useful for you if you ever want Codex to one-shot a sales-page hero animation or a complex landing page from a screenshot.</p>
+
+        <h5>The 5-minute Codex test you should run</h5>
+        <p>Open Codex (chatgpt.com/codex), set the model to GPT 5.5, set effort to medium, set speed to fast. Point it at a real BNSN sales page screenshot and say: "recreate this layout exactly, use Tailwind, match colors and fonts, output as a single index.html." Time how long it takes. Compare to the same prompt in Claude Code. If 5.5 cuts the cycle in half on visual front-end work, you have a new tool for the BNSN landing-page studio. If it ties or loses, Claude stays your tool and you stop wondering whether you're behind. Either way you stop spending 5 hours reading reaction videos. 5 minutes to a real opinion.</p>
+      </div>
+    </div>
     <div class="btn-row-label">Try it</div>
     <div class="btn-row">
       <a class="btn btn-install" href="https://chatgpt.com/codex" target="_blank">⚡ Open Codex (use GPT 5.5)</a>
       <a class="btn btn-install" href="https://chatgpt.com" target="_blank">⚡ Open ChatGPT (5.5 in model picker)</a>
-      <a class="btn btn-ghost" href="https://www.youtube.com/watch?v=T_xyhjfFCdY" target="_blank">▶ Watch Ondrej (12 min)</a>
     </div>
   </div>
 
@@ -330,11 +433,30 @@
       <li><strong>Build a chat app on top of your notebook</strong> using Lovable + Pinecone. Members get a custom AI trained on your library, branded as yours.</li>
       <li><strong>Numbers your notebook can't crunch</strong> get pushed to Supabase so Claude can analyze trends in your performance data.</li>
     </ul>
+    <div class="btn-row-label">Consume</div>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="https://www.youtube.com/watch?v=PkOlfB3RY5Q" target="_blank">▶ Watch Jack (35 min)</a>
+      <button class="btn btn-ghost" onclick="togglePanel('jack-details')">📖 Read the details</button>
+    </div>
+    <div class="panel" id="jack-details">
+      <div class="panel-inner">
+        <h5>The 2 walls NotebookLM has, and how this skill solves both</h5>
+        <p>Wall 1: NotebookLM cannot do math. It predicts answers based on text, it does not run SQL or compute aggregations. Ask it "what's my average open rate this quarter" across your Email Library notebook and it will guess from context, not calculate. Wall 2: your data is trapped. There is no public consumer API, no native export, no cross-notebook search. Knowledge goes in, doesn't come out. Jack's skill solves both. It logs into NotebookLM as you (using your saved Chrome cookie, after a one-time browser login) and reads/writes everything programmatically. Claude can now bulk-export every transcript to local files where it CAN do math, push numeric data to Supabase, and search across all your notebooks in one query.</p>
+
+        <h5>Bulk-export pipeline for your 4 notebooks</h5>
+        <p>You have 4 notebooks: Copy Playbook, BNSN Intel, Email Library, AI Brain. One Claude command exports every source from any notebook to local markdown files. Critical detail: Jack flagged that without the right flag, you'll only get the first third of a long transcript. Use his prompt verbatim: "download the full transcript for every source in [notebook name], save to [folder], and use minus O so you get the full content not the truncated version." Once exported, the Auto Research skill (the Ben AI card above) can read all of them at once and surface your top-performing subject-line patterns, your highest-engagement Circle posts, etc. Saves you hours of clicking source-by-source through NotebookLM.</p>
+
+        <h5>The YouTube-channel-to-NotebookLM Chrome extension</h5>
+        <p>A free Chrome extension Jack uses (search "youtube notebooklm" in the Chrome Web Store) lets you add a creator's entire YouTube channel as NotebookLM sources with one click. Jack added all of Veritasium in seconds: hundreds of videos, all transcripts, instantly queryable. For you: add Brock Mesarich's full channel, Ben AI's full channel, Nate Herk's full channel as sources in your AI Brain notebook. Now Claude has every word any of those creators has said about Claude skills, and you can ask "summarize Brock's last 30 days on skills" and get a real answer.</p>
+
+        <h5>Building a custom chat app on top of a notebook</h5>
+        <p>This is the path to a real Collective product, not just an internal tool. Jack's flow: build a clean dashboard in Lovable (the no-code visual builder), connect GitHub, clone the repo into Claude Code, push your exported transcripts into Pinecone (vector database, free tier), push your numeric data to Supabase (free tier), wire OpenRouter as the model API. End result: a branded chat app where members ask questions, the app pulls relevant transcripts from Pinecone AND queries the numbers from Supabase, and the answer combines both. Members get a custom AI trained on your library, branded as yours. That's a YouCloned upsell or an AI Collective members-only tool, sold for $19/mo or rolled into the $297/mo Collective tier.</p>
+      </div>
+    </div>
     <div class="btn-row-label">Get it</div>
     <div class="btn-row">
       <a class="btn btn-install" href="https://aiwithjack.com" target="_blank">⚡ aiwithjack.com</a>
       <a class="btn btn-install" href="https://chrome.google.com/webstore/search/youtube%20notebooklm" target="_blank">⚡ YouTube → NotebookLM extension</a>
-      <a class="btn btn-ghost" href="https://www.youtube.com/watch?v=PkOlfB3RY5Q" target="_blank">▶ Watch (35 min)</a>
     </div>
     <div class="verify-note">Jack distributes his skill from his site (aiwithjack.com). Verify the exact download path before clicking install.</div>
   </div>
@@ -348,9 +470,25 @@
     <div class="creator">Jono Catliff</div>
     <h3>Claude Design + Claude Code = $15K Client Websites</h3>
     <p>Jono ships full client websites in 10 minutes using a free site (getdesign.md) that has 68 pre-built brand kits (Apple, Airbnb, Claude, BMW, etc.) you paste into Claude. Useful as a member playbook for non-coder Collective folks who want to ship their own sales page this week.</p>
+    <div class="btn-row-label">Consume</div>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="https://www.youtube.com/watch?v=xYv4_cTOSNM" target="_blank">▶ Watch Jono (15 min)</a>
+      <button class="btn btn-ghost" onclick="togglePanel('jono-details')">📖 Read the details</button>
+    </div>
+    <div class="panel" id="jono-details">
+      <div class="panel-inner">
+        <h5>The getdesign.md 68 brand kits</h5>
+        <p>Free site at getdesign.md hosts ready-to-paste design systems for 68 of the world's biggest brands: Apple, Airbnb, Airtable, Binance, BMW, Anthropic, etc. Each kit is a single text block with the full brand: every color value, every font family, headline rules, button styles, icons, type scale, spacing rules, plus light and dark variants. You copy the entire block, paste it into Claude Design's "additional notes" field when creating a Design System, and Claude builds out the entire brand suite in 5 minutes: icons, buttons, marketing UI kit, type families. From then on every page you create with that design system inherits the brand. For BNSN you would create your OWN kit (Barlow, gunmetal #070a10, orange #ff6900, peach accent) once and reuse it forever.</p>
+
+        <h5>The Claude Design + Claude Code handoff workflow</h5>
+        <p>Jono's flow ships a 5-page agency website in under 10 minutes: (1) In Claude Design, click Prototype, name the project, pick your design system, choose high-fidelity. (2) Grab a structure reference screenshot from durable.com (a public design library) and attach it. (3) Prompt: "build a 5-page site (home, services, about, case studies, contact) using my design system for branding and the screenshot for layout structure." (4) Claude Design returns 5 pages. (5) Click Export, choose "Handoff to Claude Code", copy the prompt. (6) Open VS Code or Anthropic's Antigravity, create empty folder, paste prompt + add "use Next.js + GSAP for animations". (7) Drop in a CLAUDE.md instruction file. (8) Run. Site appears on localhost with full GSAP animations baked in. (9) Push to GitHub. (10) Vercel auto-deploys. Live URL in 1 click.</p>
+
+        <h5>Why this is a YouCloned member playbook, not your own deploy path</h5>
+        <p>Reasons you should NOT use this for BNSN, AI Collective, or jonbenson.com: (1) Vercel is the deploy target and you've already ruled it out ($5K/mo quote). You're on Fly.io + Cloudflare. (2) Next.js is overkill for sales pages, your existing setup serves static HTML faster and cheaper. (3) The 68 brand kits don't include yours, and you already have your design system locked in (gunmetal + orange + Barlow). Where this DOES win: a YouCloned member playbook for non-coder Collective folks shipping their first client website or their own coach landing page. They get an Apple-quality look for free, ship in 10 minutes, deploy to Vercel's free tier (which is fine at low scale), and feel like a wizard. Strip Jono's branding, record a 12-minute walkthrough using your own kit as the example, drop it in the AI Collective playbook library. Members ship their first $15K-quality page this week.</p>
+      </div>
+    </div>
     <div class="btn-row">
       <a class="btn btn-install" href="https://getdesign.md" target="_blank">⚡ getdesign.md (68 brand kits)</a>
-      <a class="btn btn-ghost" href="https://www.youtube.com/watch?v=xYv4_cTOSNM" target="_blank">▶ Watch (15 min)</a>
     </div>
   </div>
 
@@ -360,8 +498,31 @@
     <div class="creator">Chase H AI</div>
     <h3>DeepSeek V4 vs Opus 4.7 vs GPT 5.5: The Real Benchmark Story</h3>
     <p>Side-by-side: GPT 5.5 wins on terminal/coding speed. Claude 4.7 still wins on real GitHub work and visual taste. DeepSeek V4 is 8x cheaper but unusable for serious work. Opus 4.7's long-document work regressed. Worth the read so you have a confident answer when a Collective member asks which to use.</p>
+    <div class="btn-row-label">Consume</div>
     <div class="btn-row">
-      <a class="btn btn-ghost" href="https://www.youtube.com/watch?v=uT2m7VD99qA" target="_blank">▶ Watch (18 min)</a>
+      <a class="btn btn-primary" href="https://www.youtube.com/watch?v=uT2m7VD99qA" target="_blank">▶ Watch Chase (18 min)</a>
+      <button class="btn btn-ghost" onclick="togglePanel('chase-details')">📖 Read the details</button>
+    </div>
+    <div class="panel" id="chase-details">
+      <div class="panel-inner">
+        <h5>Pricing per 1M tokens</h5>
+        <ul>
+          <li><strong>GPT 5.5:</strong> $5 input, $30 output. Most expensive of the 3. OpenAI claims it uses fewer tokens per task so end-to-end cost lands about 20% above GPT 5.4.</li>
+          <li><strong>Claude Opus 4.7:</strong> $5 input, $25 output. Middle of the pack on price.</li>
+          <li><strong>DeepSeek V4 Pro:</strong> $1.70 input, $3.48 output. About 8 times cheaper than the others on output. Open-source weights but the model is 1.6 trillion parameters so you can't run it locally without serious hardware. Use the API.</li>
+        </ul>
+
+        <h5>Benchmark winners</h5>
+        <ul>
+          <li><strong>SWE-Bench Verified and SWE-Bench Pro:</strong> Opus 4.7 wins both. Real GitHub coding work. Opus stays the right tool for actual codebase changes.</li>
+          <li><strong>Terminal Bench 2.0:</strong> GPT 5.5 wins by a huge margin (87.2). Even higher than Anthropic's unreleased Mythos model reportedly scores. Terminal/CLI work goes to Codex.</li>
+          <li><strong>Long context (500K to 1M tokens):</strong> Opus 4.7 regressed badly. Worse than Opus 4.6 here, and worse than DeepSeek V4 and GPT 5.5 in the same range. If you ever need to dump a giant codebase or a long manuscript, GPT 5.5 is now the better pick. (Note: at that token range you're hitting context rot in any model.)</li>
+          <li><strong>DeepSeek V4 Pro:</strong> never wins, but stays within 5 points of Opus on coding while being 8x cheaper. Decent fallback for simple, high-volume tasks where cost matters more than quality.</li>
+        </ul>
+
+        <h5>The 3JS flight sim head-to-head</h5>
+        <p>Chase ran the same prompt ("build a 3JS browser flight simulator that feels good to fly") through all 3 models. Results: <strong>GPT 5.5 in Codex won fast.</strong> 7 minutes for the first pass, 66K tokens total across 3 iterations, fully playable plane that took off, instruments worked, third-person camera worked. Clear winner. <strong>Claude Code with Opus 4.7 came second.</strong> 20 minutes for first pass, 200K tokens, plane spawned in mid-air at first, took 3 prompts to make it playable. The most thorough plan of the three (5 minutes just to plan), but the most expensive and slowest. <strong>DeepSeek V4 came last.</strong> 10 minutes, 63K tokens, completely broken graphics on first pass, still incoherent on second pass. Would have needed a much more specific prompt to get anywhere usable. The takeaway for you: Codex/GPT 5.5 may genuinely be faster on visual front-end work. Claude Code stays your tool for real codebase changes (BNSN, jonbenson.com, anything with state). DeepSeek isn't a serious contender for your kind of work.</p>
+      </div>
     </div>
   </div>
 
